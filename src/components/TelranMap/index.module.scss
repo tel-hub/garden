@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+@import "../../styles/extends";
+@import "../../styles/mixins";
+
+.map_marker {
+  --pin-size: 50px;
+  display: block;
+  width: var(--pin-size);
+  height: var(--pin-size);
+  margin: calc(-1 * var(--pin-size)) 0 0 calc(-.5 * var(--pin-size));
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: lighten($color-green, 25);
+  }
+}

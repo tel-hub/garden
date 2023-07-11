@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+@import '../node_modules/modern-normalize/modern-normalize.css';
+@import "styles/variables";
+@import "styles/extends";
+@import "styles/mixins";
+
+html {
+  @include custom-scroll;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  min-width: 320px;
+  position: relative;
+  height: 100%;
+}
+
+.page {
+  min-height: 100%;
+  padding-top: 100px;
+  background: $color-white;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.content {
+  flex: 1 0 auto;
+  padding-top: 30px;
+
+  @include respond-to-min($screen-desktop) {
+    padding-top: 76px;
+  }
+}
+
+.container {
+  max-width: $content-max-width;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  @include respond-to-min($screen-mobile) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.container-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.03em;
+  margin: 0;
+
+  &__holder {
+    padding: 20px 0 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  @include respond-to-min($screen-mobile) {
+    font-size: 40px;
+    line-height: 52px;
+
+    &__holder {
+      padding: 40px 0 20px;
+    }
+  }
+}
+
+.items-container {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+
+  @include respond-to-min($screen-mobile) {
+    gap: 18px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include respond-to-min($screen-tablet) {
+    gap: 24px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @include respond-to-min($screen-desktop) {
+    gap: 32px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+.category-item {
+  display: flex;
+  gap: 10px;
+  text-decoration: none;
+  flex-flow: column nowrap;
+
+  &:hover {
+    .category-name {
+      text-decoration: underline;
+    }
+  }
+}
+
+.category-name {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 23px;
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: $color-black;
+  margin-bottom: 10px;
+
+  //white-space: nowrap;
+  //max-width: 100%;
+  //overflow: hidden;
+  //text-overflow: ellipsis;
+}
+
+.category-image {
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+  }
+
+  @include respond-to-min($screen-tablet) {
+    margin-bottom: 20px;
+  }
+}
+
+
+.text-center {
+  text-align: center;
+}
+
+.error-alert {
+  color: $color-red;
+}
