@@ -4,6 +4,7 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import {makeRetinaSrc} from "../../helpers/functions";
 import {BASE_URL} from "../../helpers/constants";
 import PriceBlock from "../PriceBlock";
+import s from "./index.module.scss";
 
 export default function ProductItem(props) {
   const {id, image, title, price, discont_price, categoryId} = props;
@@ -20,14 +21,16 @@ export default function ProductItem(props) {
           {...makeRetinaSrc(BASE_URL + image)}
         />
         <div className="item-image__price">
+          <span onClick={() => {
 
+          }} className={s.cart_btn}>Add to cart</span>
         </div>
       </div>
 
       <PriceBlock price={price} discount_price={discont_price}></PriceBlock>
 
       <div className="product-title__holder">
-        <Link to={`/products/${categoryId}/product/${id}`} className="product-title">
+        <Link to={`/category/${categoryId}/product/${id}`} className="product-title">
           {title}
         </Link>
       </div>

@@ -7,7 +7,7 @@ import Preloader from "../Preloader";
 
 export default function Category({id, image, name}) {
   return (
-    <Link to={`${ROUTES.categoryId.path.replace(":id", id)}`} className="grid-item">
+    <Link to={`${ROUTES.categoryId.path.replace(":category_id", id)}`} className="grid-item">
       <div className="item-image__holder">
         <LazyLoadImage
           alt={name}

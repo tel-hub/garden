@@ -13,8 +13,8 @@ export default function CategoryContainer({short = false}) {
     isLoading,
     isSuccess,
     isError,
-    error, ...rest
-  } = useGetCategoriesQuery();
+    error
+  } = useGetCategoriesQuery("all");
 
   return (
     <div className="container">

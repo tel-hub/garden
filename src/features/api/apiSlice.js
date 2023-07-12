@@ -6,14 +6,9 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL
   }),
-  //tagTypes: ["Categories"],
   endpoints: (builder) => ({
     getCategories: builder.query({
-      query: () => "/categories/all",
-      //providesTags: (result, error, id) => {
-      //  console.log("providesTags", result, id);
-      //  return [{type: "Categories", id}];
-      //},
+      query: (category_id) => `/categories/${category_id}`,
       transformResponse(baseQueryReturnValue, meta, arg) {
         console.log("transformResponse", baseQueryReturnValue, meta, arg);
 
@@ -21,11 +16,7 @@ export const apiSlice = createApi({
       }
     }),
     getProducts: builder.query({
-      query: () => "/products/all",
-      //providesTags: (result, error, id) => {
-      //  console.log("providesTags", result, id);
-      //  return [{type: "Categories", id}];
-      //},
+      query: (product_id) => `/products/${product_id}`,
       transformResponse(baseQueryReturnValue, meta, arg) {
         console.log("transformResponse", baseQueryReturnValue, meta, arg);
 
@@ -34,15 +25,9 @@ export const apiSlice = createApi({
     }),
     getSales: builder.query({
       query: () => "/products/all",
-      //providesTags: (result, error, id) => {
-      //  console.log("providesTags", result, id);
-      //  return [{type: "Categories", id}];
-      //},
       transformResponse(baseQueryReturnValue, meta, arg) {
-        console.log("transformResponse", baseQueryReturnValue, meta, arg);
-
         return baseQueryReturnValue.reduce((acc, item) => {
-          if (acc.findIndex(f => f.categoryId === item.categoryId) === -1) {
+          if (item.discont_price !== null) {
             acc.push(item);
           }
 

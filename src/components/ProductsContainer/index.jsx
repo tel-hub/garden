@@ -1,10 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
-import Category from "../Category";
 import {useGetProductsQuery} from "../../features/api/apiSlice";
-import {ROUTES} from "../../helpers/constants";
 import Preloader from "../Preloader";
-import s from "./index.module.scss";
+import ProductItem from "../ProductItem";
 
 export default function ProductsContainer({short = false}) {
 
@@ -14,21 +11,20 @@ export default function ProductsContainer({short = false}) {
     isSuccess,
     isError,
     error, ...rest
-  } = useGetProductsQuery();
+  } = useGetProductsQuery("all");
 
   return (
     <div className="container">
       <div className="container-title__holder">
-        <h1 className="container-title">Catalog</h1>
+        <h1 className="container-title">All products</h1>
       </div>
 
       {isLoading ?
         <Preloader></Preloader> :
         isSuccess && products.length ?
           <div className="items-container">
-            {products.slice(0, short ? 4 : products.length - 1).map((cat, index) => {
-              return <Category key={index} id={cat.id} name={cat.name} image={cat.image}/>;
-            })}
+            {products.slice(0, short ? 4 : products.length - 1).map((product, index) => <ProductItem
+              key={index} {...product}/>)}
           </div> : isError ?
             <div className="error-alert">
               {error}

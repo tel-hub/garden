@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import s from "./index.module.scss";
 
 export default function PriceBlock({price = 0, discount_price = 0}) {
-
 
   return (
     <div className={s.price_block}>
