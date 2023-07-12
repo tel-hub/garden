@@ -20,6 +20,8 @@
     "react-transition-group": "^4.4.5",
     "redux": "^4.2.1",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "reduxjs-toolkit-persist": "^7.2.1",
     "sass": "^1.63.6"
   },
   "scripts": {
