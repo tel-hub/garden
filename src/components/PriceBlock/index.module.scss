@@ -4,25 +4,18 @@
 
 .discount_price {
   text-decoration: line-through;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 26px;
-  letter-spacing: 0.03em;
   color: $color-grey;
 }
 
 .price {
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 39px;
   letter-spacing: 0.03em;
+
+  b {
+    font-size: 30px;
+  }
 }
 
 .share {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 26px;
-  letter-spacing: 0.03em;
   color: $color-red;
 }
 
@@ -30,6 +23,10 @@
   display: flex;
   align-items: baseline;
   gap: 20px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
 
   @include respond-to-min($screen-tablet) {
     gap: 30px;

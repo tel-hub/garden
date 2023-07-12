@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {Route, Routes, useLocation} from "react-router-dom";
 
-import "./App.scss";
 import {ROUTES} from "./helpers/constants";
 import {pageScrolledToggle} from "./slices/interfaceSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {useScroll} from "./features/helpers/helpers";
+import {usePrevious, useScroll} from "./features/helpers/helpers";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -17,17 +16,19 @@ import ProductByCategoryPage from "./pages/ProductByCategoryPage";
 import CategoriesPage from "./pages/CategoriesPage";
 import Preloader from "./components/Preloader";
 import CartPage from "./pages/CartPage";
-//import ProductInfoPage from "./pages/ProductInfoPage";
+import ProductInfoPage from "./pages/ProductInfoPage";
 //import UsersList from "./pages/UsersList";
 //import UserInfoPage from "./pages/UserInfoPage";
+import "./App.scss";
 
 function App() {
   const dispatch = useDispatch();
   const scrollPosition = useScroll();
+  const location = useLocation();
+  const prevLocation = usePrevious(location);
   const pageScrolled = useSelector((state) => state.interface.pageScrolled);
-  let location = useLocation();
+  const [transitionStage, setTransitionStage] = useState("fadeIn");
   const [displayLocation, setDisplayLocation] = useState(location);
-  const [transitionStage, setTransistionStage] = useState("fadeIn");
 
   useEffect(() => {
     let newScrolled = scrollPosition > 100;
@@ -38,23 +39,23 @@ function App() {
 
   }, [scrollPosition, pageScrolled]);
 
-
   useEffect(() => {
-    if (location !== displayLocation) {
-      setTransistionStage("fadeOut");
+    if (JSON.stringify(location) !== JSON.stringify(displayLocation)) {
+      setTransitionStage("fadeOut");
     }
-  }, [location, displayLocation]);
+  }, [prevLocation, location, displayLocation]);
 
   return (
     <React.Fragment>
-      <Header/>
+      <Header prevLocation={prevLocation}/>
 
       <main className="content">
         <div
+          key={location.pathname}
           className={`${transitionStage}`}
           onAnimationEnd={() => {
             if (transitionStage === "fadeOut") {
-              setTransistionStage("fadeIn");
+              setTransitionStage("fadeIn");
               setDisplayLocation(location);
             }
           }}
@@ -65,7 +66,7 @@ function App() {
             <Route path={ROUTES.products.path} element={(<ProductsPage/>)}/>
             <Route path={ROUTES.categoryId.path} element={(<ProductByCategoryPage/>)}/>
             <Route path={ROUTES.cart.path} element={(<CartPage/>)}/>
-            {/*<Route path={ROUTES.productsId.path} element={(<ProductInfoPage/>)}/>*/}
+            <Route path={ROUTES.productsId.path} element={(<ProductInfoPage/>)}/>
             {/*<Route path="/users/:user_role" element={(<UsersList/>)}/>*/}
             {/*<Route path="/user/:user_id" element={(<UserInfoPage/>)}/>*/}
             <Route path="*" element={<NotFound/>}/>

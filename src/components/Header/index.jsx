@@ -10,14 +10,13 @@ import logo3x from "../../images/logo@3x.png";
 import {useDispatch, useSelector} from "react-redux";
 import {menuToggle, menuUpdate} from "../../slices/interfaceSlice";
 import {useLocation} from "react-router-dom";
-import {usePrevious} from "../../features/helpers/helpers";
 
 export default function Header(props) {
   const burgerOpen = useSelector((state) => state.interface.burgerOpen);
   const pageScrolled = useSelector((state) => state.interface.pageScrolled);
   const dispatch = useDispatch();
   const location = useLocation();
-  const prevLocation = usePrevious(location);
+  const prevLocation = props.prevLocation;
 
   useEffect(() => {
     if (prevLocation && location && prevLocation.pathname !== location.pathname) {
