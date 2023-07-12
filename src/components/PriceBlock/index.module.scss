@@ -1,0 +1,41 @@
+@import "../../styles/variables";
+@import "../../styles/extends";
+@import "../../styles/mixins";
+
+.discount_price {
+  text-decoration: line-through;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0.03em;
+  color: $color-grey;
+}
+
+.price {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 39px;
+  letter-spacing: 0.03em;
+}
+
+.share {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0.03em;
+  color: $color-red;
+}
+
+.price_block {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+
+  @include respond-to-min($screen-tablet) {
+    gap: 30px;
+  }
+
+  @include respond-to-min($screen-desktop) {
+    gap: 44px;
+  }
+}

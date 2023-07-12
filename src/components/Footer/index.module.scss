@@ -3,9 +3,14 @@
 @import "../../styles/mixins";
 
 .footer_wrapper {
+  margin-top: 20px;
 
-  @include respond-to-max($screen-desktop) {
+  @include respond-to-min($screen-tablet) {
+    margin-top: 30px;
+  }
 
+  @include respond-to-min($screen-desktop) {
+    margin-top: 40px;
   }
 }
 
@@ -13,6 +18,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
+  padding-bottom: 20px;
 
   a {
     color: $color-black;
@@ -24,8 +30,9 @@
   }
 
   @include respond-to-min($screen-desktop) {
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1.33fr 1fr;
     grid-template-areas: "contact address";
+    padding-bottom: 40px;
   }
 }
 
@@ -53,6 +60,10 @@
     line-height: 31px;
     margin: 0;
   }
+
+  @include respond-to-min($screen-desktop) {
+    margin: 22px 0;
+  }
 }
 
 .footer_address {
@@ -68,7 +79,6 @@
     font-size: 40px;
     line-height: 52px;
   }
-
 
   @include respond-to-max($screen-desktop) {
     a {
@@ -98,19 +108,21 @@
 .footer_soc {
   display: flex;
   gap: 34px;
+  padding-top: 10px;
 
   a {
     display: flex;
     gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0;
     flex-flow: column;
     align-items: center;
   }
 
   @include respond-to-min($screen-desktop) {
-    a {
-      font-size: 50px;
-      line-height: 61px;
-    }
+    padding-top: 30px;
   }
 }
 
@@ -128,11 +140,19 @@
 
 .footer_title {
   font-weight: 700;
-  font-size: 40px;
-  line-height: 52px;
+  font-size: 24px;
+  line-height: 32px;
+  margin-bottom: 15px;
 
-  @include respond-to-max($screen-desktop) {
+  @include respond-to-min($screen-tablet) {
+    margin-bottom: 20px;
     font-size: 30px;
     line-height: 40px;
+  }
+
+  @include respond-to-min($screen-desktop) {
+    margin-bottom: 25px;
+    font-size: 40px;
+    line-height: 52px;
   }
 }
