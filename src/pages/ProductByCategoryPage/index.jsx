@@ -9,6 +9,7 @@ export default function ProductByCategoryPage() {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
+
     getProducts(id).then(json => {
       console.log("productList", id, json);
 
@@ -20,11 +21,11 @@ export default function ProductByCategoryPage() {
     <div>
       <p>Product {productList.length ? productList[0].title : id}</p>
 
-      {/*<div className="products-container">*/}
-      {/*  {productList?.map((prod, index) => {*/}
-      {/*    return <ProductItem key={index} {...prod}/>*/}
-      {/*  })}*/}
-      {/*</div>*/}
+      <div className="products-container">
+        {productList?.map((prod, index) => {
+          return <ProductItem key={index} {...prod}/>
+        })}
+      </div>
     </div>
   );
 }

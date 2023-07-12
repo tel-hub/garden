@@ -31,8 +31,26 @@ export const apiSlice = createApi({
 
         return baseQueryReturnValue;
       }
+    }),
+    getSales: builder.query({
+      query: () => "/products/all",
+      //providesTags: (result, error, id) => {
+      //  console.log("providesTags", result, id);
+      //  return [{type: "Categories", id}];
+      //},
+      transformResponse(baseQueryReturnValue, meta, arg) {
+        console.log("transformResponse", baseQueryReturnValue, meta, arg);
+
+        return baseQueryReturnValue.reduce((acc, item) => {
+          if (acc.findIndex(f => f.categoryId === item.categoryId) === -1) {
+            acc.push(item);
+          }
+
+          return acc;
+        }, []);
+      }
     })
   })
 });
 
-export const {useGetCategoriesQuery, useGetProductsQuery} = apiSlice;
+export const {useGetCategoriesQuery, useGetProductsQuery, useGetSalesQuery} = apiSlice;

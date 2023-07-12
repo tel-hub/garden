@@ -1,6 +1,7 @@
 @import "mixins";
 
 %btn {
+  cursor: pointer;
   height: 49px;
   padding: 14px 5px 15px;
   border-radius: 5px;
@@ -27,6 +28,16 @@
 
     &:hover {
       background: darken($color-white, 5%);
+    }
+  }
+
+  &.white-border {
+    background: transparent;
+    border: 2px solid $color-white;
+    color: $color-white;
+
+    &:hover {
+      background: darken($color-green, 10%);
     }
   }
 

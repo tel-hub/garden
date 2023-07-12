@@ -7,6 +7,7 @@ import {makeRetinaSrc} from "../../helpers/functions";
 import Hero from "../../components/Hero";
 import Discount from "../../components/Discount";
 import CategoryContainer from "../../components/CategoryContainer";
+import SalesContainer from "../../components/SalesContainer";
 
 export default function MainPage() {
   useEffect(() => {
@@ -18,8 +19,7 @@ export default function MainPage() {
       <Hero></Hero>
       <CategoryContainer short={true}></CategoryContainer>
       <Discount></Discount>
-
-
+      <SalesContainer short={true}></SalesContainer>
     </>
   );
 }

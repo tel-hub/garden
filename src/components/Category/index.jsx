@@ -8,14 +8,16 @@ import Preloader from "../Preloader";
 export default function Category({id, image, name}) {
   return (
     <Link to={`${ROUTES.categoryId.path.replace(":id", id)}`} className="category-item">
-      <LazyLoadImage
-        alt={name}
-        threshold={300}
-        effect={"opacity"}
-        wrapperClassName={"category-image"}
-        //placeholder={<Preloader></Preloader>}
-        {...makeRetinaSrc(BASE_URL + image)}
-      />
+      <div className="category-image__holder">
+        <LazyLoadImage
+          alt={name}
+          threshold={300}
+          effect={"opacity"}
+          wrapperClassName={"category-image"}
+          //placeholder={<Preloader></Preloader>}
+          {...makeRetinaSrc(BASE_URL + image)}
+        />
+      </div>
       <div className="category-name">{name}</div>
     </Link>
   );

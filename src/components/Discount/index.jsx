@@ -17,11 +17,13 @@ export default function Discount(props) {
             <img src={share} srcSet={`${share2x} 2x, ${share3x} 3x`} alt="logo"/>
           </div>
           <div className={cn(s.discount_text)}>
-            <h2>Sale</h2>
-            <h3>New season</h3>
+            <h2>5%&nbsp;off</h2>
+            <h3>on the first order</h3>
 
-            <form action="#">
-              <input placeholder="+49" type="text"/>
+            <form action="#" className={cn(s.discount_form)}>
+              <div className={cn(s.discount_input)}>
+                <input placeholder="+49" type="text"/>
+              </div>
               <button className={s.discount_btn}>Get a discount</button>
             </form>
           </div>

@@ -8,11 +8,12 @@
 
 .hero_block {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns:  1fr;
   align-items: center;
 
-  @include respond-to-max($screen-desktop) {
-    grid-template-columns:  1fr;
+  @include respond-to-min($screen-desktop) {
+    grid-template-columns:  1fr 1fr;
+    padding: 0 25px;
   }
 }
 
@@ -30,7 +31,7 @@
 }
 
 .hero_text {
-  padding: 20px 0;
+  padding: 25px 0 40px;
   color: $color-white;
 
   h2 {
@@ -56,10 +57,11 @@
 
 .hero_image {
   display: flex;
-  align-items: center;
+  max-height: 600px;
+  overflow: hidden;
 
   img {
-    margin: auto;
+    margin: 0 auto;
     max-width: 100%;
   }
 

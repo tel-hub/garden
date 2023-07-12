@@ -31,7 +31,7 @@ body {
   padding-top: 30px;
 
   @include respond-to-min($screen-desktop) {
-    padding-top: 76px;
+    padding-top: 68px;
   }
 }
 
@@ -74,6 +74,7 @@ body {
   display: grid;
   gap: 12px;
   grid-template-columns: 1fr;
+  margin-bottom: 20px;
 
   @include respond-to-min($screen-mobile) {
     gap: 18px;
@@ -83,23 +84,24 @@ body {
   @include respond-to-min($screen-tablet) {
     gap: 24px;
     grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 30px;
   }
 
   @include respond-to-min($screen-desktop) {
     gap: 32px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-bottom: 50px;
   }
 }
 
 .category-item {
   display: flex;
-  gap: 10px;
   text-decoration: none;
   flex-flow: column nowrap;
 
   &:hover {
     .category-name {
-      text-decoration: underline;
+      color: $color-green;
     }
   }
 }
@@ -112,22 +114,83 @@ body {
   text-align: center;
   color: $color-black;
   margin-bottom: 10px;
+  transition: color 0.3s;
+}
 
-  //white-space: nowrap;
-  //max-width: 100%;
-  //overflow: hidden;
-  //text-overflow: ellipsis;
+.product-title__holder {
+  width: 100%;
+  overflow: hidden;
+  height: 18px;
+  position: relative;
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 10px;
+
+  @include respond-to-min($screen-tablet) {
+    font-size: 16px;
+    line-height: 21px;
+    height: 21px;
+  }
+}
+
+.product-title {
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  color: $color-black;
+  display: inline-block;
+  transition: color 0.3s;
+
+  &:hover {
+    color: $color-green;
+  }
+}
+
+.category-image__holder {
+  position: relative;
+
+  @include respond-to-min($screen-mobile) {
+    margin-bottom: 10px;
+  }
+
+  @include respond-to-min($screen-tablet) {
+    margin-bottom: 20px;
+  }
+
+  &:hover {
+    .category-image__price {
+      pointer-events: all;
+      opacity: 1;
+    }
+  }
+}
+
+.category-image__price {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  padding: 20px;
+  transition: opacity 0.3s;
 }
 
 .category-image {
-  margin-bottom: 10px;
   position: relative;
   overflow: hidden;
+  width: 100%;
 
   &::before {
     content: '';
     display: block;
-    padding-bottom: 100%;
+    padding-bottom: 107%;
   }
 
   img {
@@ -137,12 +200,7 @@ body {
     height: 100%;
     transform: translate(-50%, -50%);
   }
-
-  @include respond-to-min($screen-tablet) {
-    margin-bottom: 20px;
-  }
 }
-
 
 .text-center {
   text-align: center;
