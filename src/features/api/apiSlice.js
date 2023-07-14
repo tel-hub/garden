@@ -20,7 +20,7 @@ export const apiSlice = createApi({
       transformResponse(baseQueryReturnValue, meta, arg) {
         console.log("transformResponse", baseQueryReturnValue, meta, arg);
 
-        return baseQueryReturnValue;
+        return arg === "all" ? baseQueryReturnValue : baseQueryReturnValue[0];
       }
     }),
     getSales: builder.query({
@@ -34,6 +34,30 @@ export const apiSlice = createApi({
           return acc;
         }, []);
       }
+    }),
+    postSale: builder.query({
+      query: () => "/sale/send"
+      //transformResponse(baseQueryReturnValue, meta, arg) {
+      //  return baseQueryReturnValue.reduce((acc, item) => {
+      //    if (item.discont_price !== null) {
+      //      acc.push(item);
+      //    }
+      //
+      //    return acc;
+      //  }, []);
+      //}
+    }),
+    postOrder: builder.query({
+      query: () => "/order/send"
+      //transformResponse(baseQueryReturnValue, meta, arg) {
+      //  return baseQueryReturnValue.reduce((acc, item) => {
+      //    if (item.discont_price !== null) {
+      //      acc.push(item);
+      //    }
+      //
+      //    return acc;
+      //  }, []);
+      //}
     })
   })
 });

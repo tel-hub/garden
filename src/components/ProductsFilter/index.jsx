@@ -2,11 +2,12 @@ import React, {useEffect, useState} from "react";
 import s from "./index.module.scss";
 
 export default function ProductsFilter(props) {
-  const {id, image, title, price, discont_price, categoryId} = props;
+  const {} = props;
 
   return (
     <div className={s.products_filter}>
-      5223we
+
+
     </div>
   );
 }

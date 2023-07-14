@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useGetProductsQuery} from "../../features/api/apiSlice";
 import Preloader from "../Preloader";
 import ProductItem from "../ProductItem";
+import ProductsFilter from "../ProductsFilter";
 
 export default function ProductsContainer({short = false}) {
 
@@ -18,6 +19,8 @@ export default function ProductsContainer({short = false}) {
       <div className="container-title__holder">
         <h1 className="container-title">All products</h1>
       </div>
+
+      <ProductsFilter></ProductsFilter>
 
       {isLoading ?
         <Preloader></Preloader> :

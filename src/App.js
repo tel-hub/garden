@@ -28,10 +28,10 @@ function App() {
   const [displayLocation, setDisplayLocation] = useState(location);
 
   useEffect(() => {
-    let newScrolled = scrollPosition > 100;
+    let newScrollTop = scrollPosition > 100;
 
-    if (pageScrolled !== newScrolled) {
-      dispatch(pageScrolledToggle(newScrolled));
+    if (pageScrolled !== newScrollTop) {
+      dispatch(pageScrolledToggle(newScrollTop));
     }
 
   }, [scrollPosition, pageScrolled]);

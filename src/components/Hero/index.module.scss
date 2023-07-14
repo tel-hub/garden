@@ -42,15 +42,37 @@
   }
 
   h3 {
-    font-size: 63px;
     font-weight: 700;
+    font-size: 63px;
     line-height: 82px;
     margin: 0 0 60px;
   }
 
   @include respond-to-max($screen-desktop) {
+    text-align: center;
+
+    h2 {
+      font-size: 60px;
+      line-height: 74px;
+    }
+
     h3 {
+      font-size: 50px;
+      line-height: 64px;
       margin-bottom: 30px;
+    }
+  }
+
+  @include respond-to-max($screen-tablet) {
+    h2 {
+      font-size: 50px;
+      line-height: 64px;
+    }
+
+    h3 {
+      font-size: 40px;
+      line-height: 52px;
+      margin-bottom: 24px;
     }
   }
 }
@@ -67,5 +89,7 @@
 
   @include respond-to-max($screen-desktop) {
     order: -1;
+    align-items: center;
+    justify-content: center;
   }
 }

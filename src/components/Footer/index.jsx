@@ -20,11 +20,11 @@ export default function Footer(props) {
             </div>
 
             <div className={cn(s.footer_soc)}>
-              <a href="#">
+              <a target="_blank" href="#">
                 <InstagramIcon></InstagramIcon>
                 <span>instagram</span>
               </a>
-              <a href="#">
+              <a target="_blank" href="#">
                 <WhatsappIcon></WhatsappIcon>
                 <span>WhatsApp</span>
               </a>
