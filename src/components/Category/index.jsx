@@ -1,9 +1,8 @@
 import React, {useCallback, useState} from "react";
 import {Link} from "react-router-dom";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {makeRetinaSrc} from "../../helpers/functions";
-import {ROUTES, BASE_URL} from "../../helpers/constants";
-import Preloader from "../Preloader";
+import {makeRetinaSrc} from "../../features/helpers/functions";
+import {ROUTES, BASE_URL} from "../../features/helpers/constants";
 
 export default function Category({id, image, name}) {
   const [hasError, setHasError] = useState(false);

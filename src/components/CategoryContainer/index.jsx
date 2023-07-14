@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import Category from "../Category";
 import {useGetCategoriesQuery} from "../../features/api/apiSlice";
-import {ROUTES} from "../../helpers/constants";
+import {ROUTES} from "../../features/helpers/constants";
 import Preloader from "../Preloader";
 import s from "./index.module.scss";
 

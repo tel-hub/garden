@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {LazyLoadImage} from "react-lazy-load-image-component";
-import {makeRetinaSrc} from "../../helpers/functions";
-import {BASE_URL} from "../../helpers/constants";
+import {makeRetinaSrc} from "../../features/helpers/functions";
+import {BASE_URL} from "../../features/helpers/constants";
 import PriceBlock from "../PriceBlock";
 import s from "./index.module.scss";
 

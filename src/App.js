@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {Route, Routes, useLocation} from "react-router-dom";
 
-import {ROUTES} from "./helpers/constants";
+import {ROUTES} from "./features/helpers/constants";
 import {pageScrolledToggle} from "./slices/interfaceSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {usePrevious, useScroll} from "./features/helpers/helpers";
+import {usePrevious, useScroll} from "./features/helpers/hooks";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";

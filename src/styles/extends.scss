@@ -1,5 +1,12 @@
 @import "mixins";
 
+%input {
+  height: 42px;
+  border-radius: 7px;
+  border: 1px solid #000;
+  padding: 0 10px;
+}
+
 %btn {
   cursor: pointer;
   height: 49px;

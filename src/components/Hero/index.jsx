@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {ROUTES} from "../../helpers/constants";
+import {ROUTES} from "../../features/helpers/constants";
 import cn from "classnames";
 import s from "./index.module.scss";
 import sale from "../../images/sale.png";

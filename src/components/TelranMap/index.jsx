@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react";
 import GoogleMapReact from "google-map-react";
-import {GMAP_API_KEY} from "../../helpers/constants";
+import {GMAP_API_KEY} from "../../features/helpers/constants";
 
 export default function TelranMap(props) {
   const defaultProps = {

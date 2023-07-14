@@ -3,6 +3,56 @@
 @import "../../styles/mixins";
 
 .products_filter {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  gap: 15px;
+  margin-bottom: 20px;
 
+  @include respond-to-min($screen-tablet) {
+    gap: 15px 30px;
+    margin-bottom: 35px;
+  }
 
+  @include respond-to-min($screen-desktop) {
+    gap: 15px 40px;
+    margin-bottom: 45px;
+  }
+}
+
+.filter_input {
+  @extend %input;
+  width: 103px;
+}
+
+.filter_select {
+  @extend %input;
+  width: 190px;
+  cursor: pointer;
+
+  @include respond-to-min($screen-tablet) {
+    width: 220px;
+  }
+}
+
+.filter_cell {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  b {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.03em;
+  }
+
+  @include respond-to-min($screen-tablet) {
+    gap: 15px;
+
+    b {
+      font-size: 20px;
+      line-height: 26px;
+    }
+  }
 }

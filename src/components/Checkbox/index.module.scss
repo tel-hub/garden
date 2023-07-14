@@ -1,0 +1,46 @@
+@import "../../styles/variables";
+@import "../../styles/extends";
+@import "../../styles/mixins";
+
+.checkbox_wrapper {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+}
+
+.checkbox_input {
+  display: none;
+
+  &:checked + span::after {
+    background: $color-green;
+  }
+}
+
+.checkbox_text {
+  --check-size: 42px;
+  display: inline-flex;
+  position: relative;
+  padding-left: var(--check-size);
+  min-height: var(--check-size);
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 7px;
+    border: 1px solid #000;
+    width: var(--check-size);
+    height: var(--check-size);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: 3px;
+    left: calc(.25 * var(--check-size));
+    top: calc(.25 * var(--check-size));
+    width: calc(.5 * var(--check-size));
+    height: calc(.5 * var(--check-size));
+  }
+}

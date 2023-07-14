@@ -8,7 +8,7 @@ export const usePrevious = (value) => {
   return ref.current;
 };
 
-export const  useScroll = () => {
+export const useScroll = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
@@ -24,4 +24,4 @@ export const  useScroll = () => {
   }, []);
 
   return scrollPosition;
-}
+};
