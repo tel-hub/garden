@@ -4,10 +4,14 @@ import React, {useEffect, useState} from "react";
 import ProductItem from "../../components/ProductItem";
 import {useGetCategoriesQuery} from "../../features/api/apiSlice";
 import Preloader from "../../components/Preloader";
+import ProductsFilter from "../../components/ProductsFilter";
+import {applyProductFilter} from "../../features/helpers/functions";
+import {useSelector} from "react-redux";
 
 export default function ProductByCategoryPage() {
   const {category_id} = useParams();
   const [productList, setProductList] = useState([]);
+  const {filter: filterState} = useSelector((state) => state.filter);
 
   const {
     data,
@@ -20,7 +24,10 @@ export default function ProductByCategoryPage() {
   const products = data?.data ?? [];
   const category = data?.category ?? {};
 
-  console.log("useGetCategoriesQuery", data, category, products);
+  useEffect(() => {
+
+    setProductList(applyProductFilter(products, filterState));
+  }, [products, JSON.stringify(filterState)]);
 
   return (
     <div className="container">
@@ -28,12 +35,14 @@ export default function ProductByCategoryPage() {
         <h1 className="container-title">{category?.title ?? ""}</h1>
       </div>
 
+      <ProductsFilter></ProductsFilter>
+
       {isLoading ?
         <Preloader></Preloader> :
         isSuccess && products.length ?
           <div className="items-container">
-            {products.map((product, index) => <ProductItem
-              key={index} {...product}/>)}
+            {productList.length ? productList.map((product, index) => <ProductItem
+              key={index} {...product}/>) : <p className="text-center">No Match</p>}
           </div> : isError ?
             <div className="error-alert">
               {error}

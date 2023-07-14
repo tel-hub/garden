@@ -1,34 +1,47 @@
 import React, {useEffect, useState} from "react";
 import s from "./index.module.scss";
 import Checkbox from "../Checkbox";
-import {filterOptions} from "../../slices/filterSlice";
+import {filterUpdate, sortOptions} from "../../slices/filterSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 export default function ProductsFilter(props) {
-  const {} = props;
+  const {filter: filterState} = useSelector((state) => state.filter);
+  const dispatch = useDispatch();
 
   return (
     <div className={s.products_filter}>
       <div className={s.filter_cell}>
         <b>Price</b>
 
-        <input className={s.filter_input} type="number" min={0}/>
+        <input className={s.filter_input} type="number" defaultValue={filterState.priceMin} min={0}
+               onChange={(e) => {
+                 const newVal = parseInt(e.target.value || "0");
+                 dispatch(filterUpdate({...filterState, priceMin: newVal}));
+               }}
+        />
 
-        <input className={s.filter_input} type="number" min={0}/>
+        <input className={s.filter_input} type="number" defaultValue={filterState.priceMax} min={0}
+               onChange={(e) => {
+                 const newVal = parseInt(e.target.value || "0") || Infinity;
+                 dispatch(filterUpdate({...filterState, priceMax: newVal}));
+               }}
+        />
       </div>
 
       <div className={s.filter_cell}>
         <b>Discounted items</b>
 
-        <Checkbox></Checkbox>
+        <Checkbox checked={filterState.onlySales}
+                  onChange={(checked) => dispatch(filterUpdate({...filterState, onlySales: checked}))}></Checkbox>
       </div>
       <div className={s.filter_cell}>
         <b>Sorted</b>
 
-        <select className={s.filter_select} onSelect={e => {
-
+        <select className={s.filter_select} defaultValue={filterState.sortBy} onChange={e => {
+          dispatch(filterUpdate({...filterState, sortBy: e.target.value}));
         }}>
-          {filterOptions.map((opt, index) => {
-            return <option key={index} value={index}>{opt}</option>;
+          {sortOptions.map((opt, index) => {
+            return <option key={index} value={opt}>{opt}</option>;
           })}
         </select>
       </div>

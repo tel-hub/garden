@@ -1,13 +1,13 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-export const filterOptions = ["by default", "price up", "price down", "name up", "name down"];
+export const sortOptions = ["by default", "price up", "price down", "name up", "name down"];
 
 const initialState = {
   filter: {
     priceMin: 0,
     priceMax: Infinity,
     onlySales: false,
-    filterBy: filterOptions[0]
+    sortBy: sortOptions[2]
   }
 };
 
@@ -16,7 +16,7 @@ export const filterSlice = createSlice({
   initialState,
   reducers: {
     filterUpdate: (state, action) => {
-      state.filter = {...state, action};
+      state.filter = {...action.payload};
     },
     filterClear: (state) => {
       state.filter = {...initialState};
