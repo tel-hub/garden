@@ -10,15 +10,12 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
 import MainPage from "./pages/MainPage";
-//import UsersPage from "./pages/UsersPage";
 import ProductsPage from "./pages/ProductsPage";
 import ProductByCategoryPage from "./pages/ProductByCategoryPage";
 import CategoriesPage from "./pages/CategoriesPage";
-import Preloader from "./components/Preloader";
 import CartPage from "./pages/CartPage";
 import ProductInfoPage from "./pages/ProductInfoPage";
-//import UsersList from "./pages/UsersList";
-//import UserInfoPage from "./pages/UserInfoPage";
+import SalesPage from "./pages/SalesPage";
 import "./App.scss";
 
 function App() {
@@ -50,28 +47,27 @@ function App() {
       <Header prevLocation={prevLocation}/>
 
       <main className="content">
-        <div
-          key={location.pathname}
-          className={`${transitionStage}`}
-          onAnimationEnd={() => {
-            if (transitionStage === "fadeOut") {
-              setTransitionStage("fadeIn");
-              setDisplayLocation(location);
-            }
-          }}
-        >
-          <Routes location={displayLocation}>
-            <Route path={ROUTES.home.path} element={(<MainPage/>)}/>
-            <Route path={ROUTES.catalog.path} element={(<CategoriesPage/>)}/>
-            <Route path={ROUTES.products.path} element={(<ProductsPage/>)}/>
-            <Route path={ROUTES.categoryId.path} element={(<ProductByCategoryPage/>)}/>
-            <Route path={ROUTES.cart.path} element={(<CartPage/>)}/>
-            <Route path={ROUTES.productsId.path} element={(<ProductInfoPage/>)}/>
-            {/*<Route path="/users/:user_role" element={(<UsersList/>)}/>*/}
-            {/*<Route path="/user/:user_id" element={(<UserInfoPage/>)}/>*/}
-            <Route path="*" element={<NotFound/>}/>
-          </Routes>
-        </div>
+        {/*<div*/}
+        {/*  key={location.pathname}*/}
+        {/*  className={`${transitionStage}`}*/}
+        {/*  onAnimationEnd={() => {*/}
+        {/*    if (transitionStage === "fadeOut") {*/}
+        {/*      setTransitionStage("fadeIn");*/}
+        {/*      setDisplayLocation(location);*/}
+        {/*    }*/}
+        {/*  }}*/}
+        {/*>*/}
+        <Routes location={location}>
+          <Route path={ROUTES.home.path} element={(<MainPage/>)}/>
+          <Route path={ROUTES.catalog.path} element={(<CategoriesPage/>)}/>
+          <Route path={ROUTES.products.path} element={(<ProductsPage/>)}/>
+          <Route path={ROUTES.categoryId.path} element={(<ProductByCategoryPage/>)}/>
+          <Route path={ROUTES.sale.path} element={(<SalesPage/>)}/>
+          <Route path={ROUTES.cart.path} element={(<CartPage/>)}/>
+          <Route path={ROUTES.productsId.path} element={(<ProductInfoPage/>)}/>
+          <Route path="*" element={<NotFound/>}/>
+        </Routes>
+        {/*</div>*/}
       </main>
 
       <Footer/>

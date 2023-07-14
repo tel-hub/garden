@@ -3,6 +3,7 @@ import {useGetSalesQuery} from "../../features/api/apiSlice";
 import Preloader from "../Preloader";
 import s from "./index.module.scss";
 import ProductItem from "../ProductItem";
+import ProductsFilter from "../ProductsFilter";
 
 export default function SalesContainer({short = false}) {
 
@@ -19,6 +20,8 @@ export default function SalesContainer({short = false}) {
       <div className="container-title__holder">
         <h1 className="container-title">{short ? "Sale" : "Products with sale"}</h1>
       </div>
+
+      {short ? null : <ProductsFilter></ProductsFilter>}
 
       {isLoading ?
         <Preloader></Preloader> :

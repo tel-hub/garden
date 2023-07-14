@@ -49,20 +49,30 @@
   gap: 2px;
 
   dt {
-    font-size: 18px;
     font-weight: 500;
-    line-height: 23px;
+    font-size: 14px;
+    line-height: 18px;
   }
 
   dd {
-    font-size: 24px;
     font-weight: 600;
-    line-height: 31px;
+    font-size: 18px;
+    line-height: 21px;
     margin: 0;
   }
 
   @include respond-to-min($screen-desktop) {
     margin: 22px 0;
+
+    dt {
+      font-size: 18px;
+      line-height: 23px;
+    }
+
+    dd {
+      font-size: 24px;
+      line-height: 31px;
+    }
   }
 }
 
@@ -76,25 +86,38 @@
 .footer_location {
   a {
     font-weight: 600;
-    font-size: 40px;
-    line-height: 52px;
+    font-size: 20px;
+    line-height: 30px;
   }
 
-  @include respond-to-max($screen-desktop) {
+  @include respond-to-min($screen-tablet) {
     a {
       font-size: 30px;
       line-height: 40px;
     }
   }
-}
 
+  @include respond-to-min($screen-desktop) {
+    a {
+      font-size: 40px;
+      line-height: 52px;
+    }
+  }
+}
 
 .footer_tel {
 
   a {
     font-weight: 600;
-    font-size: 50px;
-    line-height: 61px;
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  @include respond-to-min($screen-tablet) {
+    a {
+      font-size: 50px;
+      line-height: 61px;
+    }
   }
 
   @include respond-to-min($screen-desktop) {
