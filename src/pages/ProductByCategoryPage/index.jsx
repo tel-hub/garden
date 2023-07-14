@@ -25,7 +25,6 @@ export default function ProductByCategoryPage() {
   const category = data?.category ?? {};
 
   useEffect(() => {
-
     setProductList(applyProductFilter(products, filterState));
   }, [products, JSON.stringify(filterState)]);
 
@@ -42,12 +41,12 @@ export default function ProductByCategoryPage() {
         isSuccess && products.length ?
           <div className="items-container">
             {productList.length ? productList.map((product, index) => <ProductItem
-              key={index} {...product}/>) : <p className="text-center">No Match</p>}
+              key={index} {...product}/>) : <p className="text-center wide">No Match</p>}
           </div> : isError ?
             <div className="error-alert">
               {error}
             </div> :
-            <p className="text-center">No Data</p>
+            <p className="text-center wide">No Data</p>
       }
     </div>
   );

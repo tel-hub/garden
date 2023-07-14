@@ -4,8 +4,12 @@ import Preloader from "../Preloader";
 import s from "./index.module.scss";
 import ProductItem from "../ProductItem";
 import ProductsFilter from "../ProductsFilter";
+import {applyProductFilter} from "../../features/helpers/functions";
+import {useSelector} from "react-redux";
 
 export default function SalesContainer({short = false}) {
+  const {filter: filterState} = useSelector((state) => state.filter);
+  const [productList, setProductList] = useState([]);
 
   const {
     data: categories,
@@ -15,21 +19,25 @@ export default function SalesContainer({short = false}) {
     error, ...rest
   } = useGetSalesQuery();
 
+  useEffect(() => {
+    setProductList(short ? categories.slice(0, 3) : applyProductFilter(categories, filterState));
+  }, [categories, short, JSON.stringify(filterState)]);
+
   return (
     <div className="container">
       <div className="container-title__holder">
         <h1 className="container-title">{short ? "Sale" : "Products with sale"}</h1>
       </div>
 
-      {short ? null : <ProductsFilter></ProductsFilter>}
+      {short ? null : <ProductsFilter showSale={false}></ProductsFilter>}
 
       {isLoading ?
         <Preloader></Preloader> :
         isSuccess && categories.length ?
           <div className="items-container">
-            {categories.slice(0, short ? 3 : categories.length).map((product, index) => {
+            {productList.length ? productList.map((product, index) => {
               return <ProductItem key={index} {...product}/>;
-            })}
+            }) : <p className="text-center wide">No Match</p>}
           </div> : isError ?
             <div className="error-alert">
               {error}

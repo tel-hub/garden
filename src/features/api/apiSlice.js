@@ -19,8 +19,7 @@ export const apiSlice = createApi({
       query: (product_id) => `/products/${product_id}`,
       transformResponse(baseQueryReturnValue, meta, arg) {
         console.log("transformResponse", baseQueryReturnValue, meta, arg);
-
-        return arg === "all" ? baseQueryReturnValue : baseQueryReturnValue[0];
+        return baseQueryReturnValue;
       }
     }),
     getSales: builder.query({

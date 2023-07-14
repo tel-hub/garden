@@ -4,7 +4,7 @@ import Checkbox from "../Checkbox";
 import {filterUpdate, sortOptions} from "../../slices/filterSlice";
 import {useDispatch, useSelector} from "react-redux";
 
-export default function ProductsFilter(props) {
+export default function ProductsFilter({showSale = true}) {
   const {filter: filterState} = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
@@ -28,12 +28,13 @@ export default function ProductsFilter(props) {
         />
       </div>
 
-      <div className={s.filter_cell}>
-        <b>Discounted items</b>
+      {showSale ?
+        <div className={s.filter_cell}>
+          <b>Discounted items</b>
+          <Checkbox checked={filterState.onlySales}
+                    onChange={(checked) => dispatch(filterUpdate({...filterState, onlySales: checked}))}></Checkbox>
+        </div> : null}
 
-        <Checkbox checked={filterState.onlySales}
-                  onChange={(checked) => dispatch(filterUpdate({...filterState, onlySales: checked}))}></Checkbox>
-      </div>
       <div className={s.filter_cell}>
         <b>Sorted</b>
 

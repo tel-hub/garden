@@ -19,7 +19,6 @@ export const applyProductFilter = (list, filter) => {
 
     return true;
   }).sort((a, b) => {
-
     if (filter.sortBy === "by default") {
       return 0;
     } else if (filter.sortBy === "price up") {
@@ -31,12 +30,12 @@ export const applyProductFilter = (list, filter) => {
       const itemPriceB = b.discont_price || b.price;
       return itemPriceB - itemPriceA;
     } else if (filter.sortBy === "name up") {
-      if(a.title < b.title) { return -1; }
-      if(a.title > b.title) { return 1; }
+      if (a.title < b.title) return -1;
+      if (a.title > b.title) return 1;
       return 0;
     } else if (filter.sortBy === "name down") {
-      if(a.title < b.title) { return 1; }
-      if(a.title > b.title) { return -1; }
+      if (a.title < b.title) return 1;
+      if (a.title > b.title) return -1;
       return 0;
     }
   });

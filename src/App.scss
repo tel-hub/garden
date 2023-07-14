@@ -108,6 +108,10 @@ body {
   grid-template-columns: 1fr;
   margin-bottom: 20px;
 
+  .wide {
+    grid-column: 1/5;
+  }
+
   @include respond-to-min($screen-mobile) {
     gap: 32px 18px;
     grid-template-columns: 1fr 1fr;
