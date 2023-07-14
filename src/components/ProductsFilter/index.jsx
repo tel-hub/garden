@@ -6,7 +6,7 @@ export default function ProductsFilter(props) {
 
   return (
     <div className={s.products_filter}>
-      23we
+      5223we
     </div>
   );
 }

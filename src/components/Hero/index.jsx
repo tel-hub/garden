@@ -19,7 +19,10 @@ export default function Hero(props) {
             <Link to={ROUTES.sale.path} className={s.hero_btn}>Sale</Link>
           </div>
           <div className={cn(s.hero_image)}>
-            <img src={sale} srcSet={`${sale2x} 2x, ${sale3x} 3x`} alt="logo"/>
+            <picture>
+              <source srcSet={`${sale}, ${sale2x} 2x, ${sale3x} 3x`}/>
+              <img src={sale} alt="logo"/>
+            </picture>
           </div>
         </div>
       </div>

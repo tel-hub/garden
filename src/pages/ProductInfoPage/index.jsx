@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback, useState} from "react";
 import {useParams} from "react-router-dom";
 import {useGetProductsQuery} from "../../features/api/apiSlice";
 import {LazyLoadImage} from "react-lazy-load-image-component";
@@ -10,6 +10,7 @@ import PriceBlock from "../../components/PriceBlock";
 
 export default function ProductInfoPage() {
   const {product_id} = useParams();
+  const [hasError, setHasError] = useState(false);
 
   const {
     data,
@@ -21,7 +22,12 @@ export default function ProductInfoPage() {
 
   const productInfo = data?.[0] ?? null;
 
-  console.log("productInfo", productInfo);
+  const imageError = useCallback((e) => {
+    if (!hasError) {
+      setHasError(true);
+      e.target.parentElement.innerHTML = `<img alt="${e.target.alt}" src="${e.target.src}" loading="lazy">`;
+    }
+  }, [hasError]);
 
   return (
     <div className="container">
@@ -41,6 +47,7 @@ export default function ProductInfoPage() {
                   effect={"opacity"}
                   //placeholder={<Preloader></Preloader>}
                   {...makeRetinaSrc(BASE_URL + productInfo.image)}
+                  onError={imageError}
                 />
               </div>
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {makeRetinaSrc} from "../../helpers/functions";
@@ -8,6 +8,14 @@ import s from "./index.module.scss";
 
 export default function ProductItem(props) {
   const {id, image, title, price, discont_price, categoryId} = props;
+  const [hasError, setHasError] = useState(false);
+
+  const imageError = useCallback((e) => {
+    if (!hasError) {
+      setHasError(true);
+      e.target.parentElement.innerHTML = `<img alt="${e.target.alt}" src="${e.target.src}" loading="lazy">`;
+    }
+  }, [hasError]);
 
   return (
     <div className="grid-item">
@@ -17,8 +25,10 @@ export default function ProductItem(props) {
           threshold={300}
           effect={"opacity"}
           wrapperClassName={"item-image __product"}
+          src={BASE_URL + image}
           //placeholder={<Preloader></Preloader>}
           {...makeRetinaSrc(BASE_URL + image)}
+          onError={imageError}
         />
         <div className="item-image__price">
           <span onClick={() => {
