@@ -5,9 +5,12 @@ import Preloader from "../../components/Preloader";
 import s from "./index.module.scss";
 import PriceBlock from "../../components/PriceBlock";
 import ProductImageLoader from "../../components/ProductImageLoader";
+import {cartAddItem} from "../../slices/cartSlice";
+import {useDispatch} from "react-redux";
 
 export default function ProductInfoPage() {
   const {product_id} = useParams();
+  const dispatch = useDispatch();
 
   const {
     data,
@@ -42,7 +45,9 @@ export default function ProductInfoPage() {
                             discount_price={productInfo?.discont_price}></PriceBlock>
 
                 <div className={s.product_cart}>
-                  <span className={s.cart_btn}>To cart</span>
+                  <span className={s.cart_btn} onClick={() => {
+                    dispatch(cartAddItem({...productInfo, count: -1}));
+                  }}>To cart</span>
                 </div>
 
                 <p><b>Description</b></p>

@@ -21,21 +21,21 @@ export const applyProductFilter = (list, filter) => {
   }).sort((a, b) => {
     if (filter.sortBy === "by default") {
       return 0;
-    } else if (filter.sortBy === "price up") {
-      const itemPriceA = a.discont_price || a.price;
-      const itemPriceB = b.discont_price || b.price;
-      return itemPriceA - itemPriceB;
-    } else if (filter.sortBy === "price down") {
+    } else if (filter.sortBy === "price desc") {
       const itemPriceA = a.discont_price || a.price;
       const itemPriceB = b.discont_price || b.price;
       return itemPriceB - itemPriceA;
-    } else if (filter.sortBy === "name up") {
-      if (a.title < b.title) return -1;
-      if (a.title > b.title) return 1;
-      return 0;
-    } else if (filter.sortBy === "name down") {
+    } else if (filter.sortBy === "price asc") {
+      const itemPriceA = a.discont_price || a.price;
+      const itemPriceB = b.discont_price || b.price;
+      return itemPriceA - itemPriceB;
+    } else if (filter.sortBy === "name desc") {
       if (a.title < b.title) return 1;
       if (a.title > b.title) return -1;
+      return 0;
+    } else if (filter.sortBy === "name asc") {
+      if (a.title < b.title) return -1;
+      if (a.title > b.title) return 1;
       return 0;
     }
   });

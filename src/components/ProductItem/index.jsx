@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React from "react";
 import {Link} from "react-router-dom";
 import PriceBlock from "../PriceBlock";
 import s from "./index.module.scss";
@@ -19,9 +19,9 @@ export default function ProductItem(props) {
           wrapperClassName={"item-image __product"}
         />
         <div className="item-image__price">
-          <span onClick={() => {
-            dispatch(cartAddItem({...props, count: 1}));
-          }} className={s.cart_btn}>Add to cart</span>
+          <span className={s.cart_btn} onClick={() => {
+            dispatch(cartAddItem({...props, count: -1}));
+          }}>Add to cart</span>
         </div>
       </div>
 

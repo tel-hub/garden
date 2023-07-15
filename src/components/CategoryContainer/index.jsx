@@ -6,7 +6,7 @@ import {ROUTES} from "../../features/helpers/constants";
 import Preloader from "../Preloader";
 import s from "./index.module.scss";
 
-export default function CategoryContainer({short = false}) {
+export default function CategoryContainer({short = false, title = ""}) {
 
   const {
     data: categories,
@@ -19,7 +19,7 @@ export default function CategoryContainer({short = false}) {
   return (
     <div className="container">
       <div className="container-title__holder">
-        <h1 className="container-title">{short ? "Catalog" : "Categories"}</h1>
+        <h1 className="container-title">{title}</h1>
 
         {short ?
           <Link to={ROUTES.catalog.path} className={s.category_btn}>All categories</Link>

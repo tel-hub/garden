@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {BASE_URL} from "../helpers/constants";
+import {BASE_URL, DEFAULT_POST_HEADERS} from "../helpers/constants";
 
 export const apiSlice = createApi({
   reducerPath: "api",
@@ -19,7 +19,7 @@ export const apiSlice = createApi({
       query: (product_id) => `/products/${product_id}`,
       transformResponse(baseQueryReturnValue, meta, arg) {
         console.log("transformResponse", baseQueryReturnValue, meta, arg);
-        return baseQueryReturnValue;
+        return {data: baseQueryReturnValue};
       }
     }),
     getSales: builder.query({
@@ -36,15 +36,15 @@ export const apiSlice = createApi({
     }),
     postSale: builder.mutation({
       query: (body) => ({
+        ...DEFAULT_POST_HEADERS,
         url: "/sale/send",
-        method: "POST",
         body
       })
     }),
     postOrder: builder.mutation({
       query: (body) => ({
+        ...DEFAULT_POST_HEADERS,
         url: "/order/send",
-        method: "POST",
         body
       })
     })

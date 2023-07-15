@@ -4,7 +4,6 @@
 @import "styles/extends";
 @import "styles/mixins";
 
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -34,6 +33,17 @@
 
 .fadeOut {
   animation: 0.5s fadeOut forwards;
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 
 html {
@@ -260,4 +270,22 @@ body {
 
 .error-alert {
   color: $color-red;
+}
+
+.dialog--card {
+
+  .dialog--button-confirm {
+    background-color: $color-green;
+
+    &:hover {
+      background-color: darken($color-green, 5%);
+    }
+  }
+
+  .dialog--button-cancel {
+
+    &:hover {
+      background-color: darken(#f3f4f6, 5%);
+    }
+  }
 }

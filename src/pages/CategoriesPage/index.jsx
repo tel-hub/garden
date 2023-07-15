@@ -4,6 +4,6 @@ import CategoryContainer from "../../components/CategoryContainer";
 export default function CategoriesPage() {
 
   return (
-    <CategoryContainer></CategoryContainer>
+    <CategoryContainer title={"Categories"}></CategoryContainer>
   );
 }

@@ -12,7 +12,7 @@ export default function MainPage() {
   return (
     <>
       <Hero></Hero>
-      <CategoryContainer short={true}></CategoryContainer>
+      <CategoryContainer short={true} title={"Catalog"}></CategoryContainer>
       <Discount></Discount>
       <SalesContainer short={true}></SalesContainer>
     </>

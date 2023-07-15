@@ -2,6 +2,9 @@ import React from "react";
 import {DialogModal, useModal} from "react-dialog-confirm";
 import {useDispatch} from "react-redux";
 import {ReactComponent as CrossIcon} from "../../icons/icons8-multiply.svg";
+import {ReactComponent as PlusIcon} from "../../icons/plus.svg";
+import {ReactComponent as MinusIcon} from "../../icons/minus.svg";
+
 import s from "./index.module.scss";
 import PriceBlock from "../PriceBlock";
 import ProductImageLoader from "../ProductImageLoader";
@@ -48,6 +51,9 @@ export default function CartItem(props) {
       </div>
 
       <div className={s.cart_item_controls}>
+        <span className={s.cart_item_minus}>
+          <MinusIcon/>
+        </span>
 
         <input defaultValue={count} min={0} type="number" onChange={e => {
           const newCount = +e.target.value;
@@ -59,6 +65,10 @@ export default function CartItem(props) {
             dispatch(cartAddItem({...props, count: newCount}));
           }
         }}/>
+
+        <span className={s.cart_item_plus}>
+          <PlusIcon/>
+        </span>
       </div>
 
       <span className={s.cart_item_remove} onClick={() => {

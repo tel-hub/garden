@@ -2,6 +2,23 @@
 @import "../../styles/extends";
 @import "../../styles/mixins";
 
+%count_btn {
+  width: 40px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-black;
+  transition: color .3s;
+
+  &:hover {
+    color: $color-green;
+  }
+}
+
 .cart_item {
   display: grid;
   grid-template-columns: 120px 1fr 40px;
@@ -79,20 +96,23 @@
 .cart_item_image {
   position: relative;
   grid-area: image;
+}
 
-  //@include respond-to-min($screen-tablet) {
-  //  grid-row: span 2;
-  //}
+.cart_item_minus {
+  @extend %count_btn;
+  left: 0;
+}
+
+.cart_item_plus {
+  @extend %count_btn;
+  right: 0;
 }
 
 .cart_item_controls {
   grid-area: controls;
-  display: flex;
-  flex-flow: column;
-  gap: 12px;
-  border-radius: 10px;
-  padding: 12px;
-  border: 2px solid $color-black;
+  position: relative;
+  width: 100%;
+  max-width: 140px;
 
   input {
     @extend %input;
@@ -102,9 +122,10 @@
     letter-spacing: 0.03em;
     width: 100%;
     height: 40px;
+    padding: 0 50px;
+    text-align: center;
+
+
   }
 
 }
-
-
-

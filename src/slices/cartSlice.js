@@ -13,9 +13,9 @@ export const cartSlice = createSlice({
       const index = state.products.findIndex(p => p.id === product.id);
 
       if (index === -1) {
-        state.products.push(product);
+        state.products.push({...product, count: 1});
       } else {
-        state.products[index].count = product.count;
+        state.products[index].count = product.count === -1 ? state.products[index].count + 1 : product.count;
       }
     },
     cartRemoveItem: (state, action) => {

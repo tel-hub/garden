@@ -34,7 +34,7 @@ export default function ProductByCategoryPage() {
         <h1 className="container-title">{category?.title ?? ""}</h1>
       </div>
 
-      <ProductsFilter></ProductsFilter>
+      <ProductsFilter/>
 
       {isLoading ?
         <Preloader></Preloader> :

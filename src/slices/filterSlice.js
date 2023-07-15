@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-export const sortOptions = ["by default", "price up", "price down", "name up", "name down"];
+export const sortOptions = ["by default", "price asc", "price desc", "name asc", "name desc"];
 
 const initialState = {
   filter: {
