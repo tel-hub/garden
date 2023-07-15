@@ -102,15 +102,15 @@ body {
     padding: 20px 0 10px;
     display: flex;
     align-items: center;
+
+    @include respond-to-min($screen-desktop) {
+      padding: 40px 0 20px;
+    }
   }
 
   @include respond-to-min($screen-mobile) {
     font-size: 40px;
     line-height: 52px;
-
-    &__holder {
-      padding: 40px 0 20px;
-    }
   }
 }
 
@@ -313,75 +313,23 @@ body {
 
 // page transitions
 
-//.fade-appear {
-//  opacity: 0.01;
-//}
-//
-//.fade-appear.fade-appear-active {
-//  opacity: 1;
-//  transition: opacity 500ms ease-in;
-//}
-//
-//.fade-enter {
-//  opacity: 0.01;
-//  transform: translate(100px, 0);
-//  z-index: 1;
-//}
-//
-//.fade-enter.fade-enter-active {
-//  opacity: 1;
-//  transform: translate(0, 0);
-//  transition: opacity 250ms ease-out, transform 300ms ease;
-//}
-//
-//.fade-exit {
-//  opacity: 1;
-//  transform: translate(0, 0);
-//}
-//
-//.fade-exit.fade-exit-active {
-//  opacity: 0;
-//  transform: translate(100px, 0);
-//  transition: opacity 250ms ease-out, transform 300ms ease;
-//}
-
-//.fade-enter {
-//  opacity: 0;
-//  transform: scale(1.1);
-//}
-//
-//.fade-enter-active {
-//  opacity: 1;
-//  transform: scale(1);
-//  transition: opacity 300ms, transform 300ms;
-//}
-//
-//.fade-exit {
-//  opacity: 1;
-//  transform: scale(1);
-//}
-//
-//.fade-exit-active {
-//  opacity: 0;
-//  transform: scale(0.9);
-//  transition: opacity 300ms, transform 300ms;
-//}
-
 /* starting ENTER animation */
-.messageout-enter {
+.page-transition-enter {
+  pointer-events: none;
   opacity: 0.01;
   transform: translateY(0%) scale(0.01);
 }
 
 /* ending ENTER animation */
-.messageout-enter-active {
+.page-transition-enter-active {
   opacity: 1;
   transform: translateY(0%) scale(1);
   transition: all 400ms ease-in-out;
 }
 
 /* starting EXIT animation */
-.messageout-exit {
+.page-transition-exit {
+  pointer-events: none;
   position: absolute;
   top: 0;
   right: 0;
@@ -392,8 +340,8 @@ body {
 }
 
 /* ending EXIT animation */
-.messageout-exit-active {
+.page-transition-exit-active {
   opacity: 0;
-  transform: scale(1.2);
+  transform: scale(4);
   transition: all 400ms ease-in-out;
 }

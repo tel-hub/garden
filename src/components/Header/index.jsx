@@ -53,13 +53,13 @@ export default function Header(props) {
     <header className={cn(s.header_wrapper, (pageScrolled || burgerOpen) ? s.header_short : "")}>
       <div className="container">
         <div className={cn(s.header)}>
-          <Link to={ROUTES.home.path} className={s.logo}>
+          <NavLink to={ROUTES.home.path} className={s.logo}>
             <img src={logo} srcSet={`${logo2x} 2x, ${logo3x} 3x`} alt="logo"/>
-          </Link>
+          </NavLink>
 
-          <Link to={ROUTES.catalog.path} className={cn(s.catalog)}>
+          <NavLink to={ROUTES.catalog.path} className={cn(s.catalog)}>
             Catalog
-          </Link>
+          </NavLink>
 
           <div className={s.burger_block}>
         <span className={cn(s.burger, (burgerOpen ? s.burger_open : ""))} onClick={() => {
@@ -78,10 +78,11 @@ export default function Header(props) {
           </div>
 
           <div className={s.cart_block}>
-            <Link to={ROUTES.cart.path} className={s.cart}>
+            <NavLink to={ROUTES.cart.path} className={s.cart}>
               <CartIcon></CartIcon>
+              {/*<span className={s.cart_fly}/>*/}
               {productsList.length ? <span className={s.cart_counter}>{productsList.length}</span> : null}
-            </Link>
+            </NavLink>
           </div>
         </div>
       </div>

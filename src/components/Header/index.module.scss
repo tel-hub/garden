@@ -27,6 +27,10 @@
   align-items: center;
   transition: gap .3s;
 
+  a:global(.active) {
+    pointer-events: none;
+  }
+
   @include respond-to-max($screen-desktop) {
     gap: 20px;
     grid-template-columns: 56px 100px 1fr 30px;
@@ -111,7 +115,6 @@
     &:global(.active) {
       pointer-events: none;
       color: $color-green;
-      cursor: default;
       text-decoration: underline;
     }
   }
@@ -156,7 +159,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   border-radius: 8px;
   min-width: 16px;
   min-height: 16px;
@@ -168,6 +171,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.cart_fly {
+  --fly-size: 10px;
+  position: absolute;
+  transition: all 1s;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 2;
+  width: var(--fly-size);
+  height: var(--fly-size);
+  background: $color-green;
+  border-radius: 100%;
+
+  @include respond-to-min($screen-desktop) {
+    --fly-size: 16px;
+  }
 }
 
 .cart_block {

@@ -40,7 +40,7 @@ function App() {
 
       <main className="content">
         <TransitionGroup component={null}>
-          <CSSTransition key={location.key} appear={true} classNames="messageout" timeout={{enter: 400, exit: 400}}
+          <CSSTransition key={location.key} appear={true} classNames="page-transition" timeout={{enter: 400, exit: 400}}
           >
             <Routes location={location}>
               <Route path={ROUTES.home.path} element={(<MainPage/>)}/>
