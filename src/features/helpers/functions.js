@@ -9,9 +9,9 @@ export const applyProductFilter = (list, filter) => {
   return (list?.length ? list.filter(item => {
     const itemPrice = item.discont_price || item.price;
 
-    if (itemPrice < filter.priceMin) {
+    if (itemPrice < (filter.priceMin || 0)) {
       return false;
-    } else if (itemPrice > filter.priceMax) {
+    } else if (itemPrice > (filter.priceMax || Infinity)) {
       return false;
     } else if (filter.onlySales && item.discont_price === null) {
       return false;
