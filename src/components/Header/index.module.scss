@@ -151,6 +151,24 @@
   }
 }
 
+.cart_counter {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  border-radius: 8px;
+  min-width: 16px;
+  min-height: 16px;
+  padding: 2px;
+  font-size: 10px;
+  line-height: 12px;
+  background: $color-black;
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .cart_block {
   display: flex;
   justify-content: flex-end;
@@ -161,6 +179,7 @@
 }
 
 .cart {
+  position: relative;
   color: $color-black;
   transition: color .3s;
 

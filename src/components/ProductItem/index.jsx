@@ -7,6 +7,7 @@ import PriceBlock from "../PriceBlock";
 import s from "./index.module.scss";
 import {useDispatch} from "react-redux";
 import {filterUpdate} from "../../slices/filterSlice";
+import {cartAddItem} from "../../slices/cartSlice";
 
 export default function ProductItem(props) {
   const {id, image, title, price, discont_price, categoryId} = props;
@@ -35,7 +36,7 @@ export default function ProductItem(props) {
         />
         <div className="item-image__price">
           <span onClick={() => {
-            //dispatch(filterUpdate({...filterState, priceMin: newVal}));
+            dispatch(cartAddItem({...props, count: 1}));
           }} className={s.cart_btn}>Add to cart</span>
         </div>
       </div>

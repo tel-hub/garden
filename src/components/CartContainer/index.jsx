@@ -1,14 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {useGetProductsQuery} from "../../features/api/apiSlice";
-import Preloader from "../Preloader";
-import ProductItem from "../ProductItem";
 import ConfirmBox from "react-dialog-confirm";
 import {useSelector} from "react-redux";
 import s from "./index.module.scss";
 
 export default function CartContainer({short = false}) {
-  const cartList = useSelector((state) => state.cart);
-
+  const productsList = useSelector((state) => state.cart.products);
 
   //const {
   //  data: products,

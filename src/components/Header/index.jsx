@@ -12,6 +12,7 @@ import {menuToggle, menuUpdate} from "../../slices/interfaceSlice";
 import {useLocation} from "react-router-dom";
 
 export default function Header(props) {
+  const productsList = useSelector((state) => state.cart.products);
   const burgerOpen = useSelector((state) => state.interface.burgerOpen);
   const pageScrolled = useSelector((state) => state.interface.pageScrolled);
   const dispatch = useDispatch();
@@ -79,6 +80,7 @@ export default function Header(props) {
           <div className={s.cart_block}>
             <Link to={ROUTES.cart.path} className={s.cart}>
               <CartIcon></CartIcon>
+              <span className={s.cart_counter}>{productsList.length}</span>
             </Link>
           </div>
         </div>
