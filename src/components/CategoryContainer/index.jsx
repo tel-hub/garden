@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Link} from "react-router-dom";
 import Category from "../Category";
 import {useGetCategoriesQuery} from "../../features/api/apiSlice";
@@ -6,7 +6,7 @@ import {ROUTES} from "../../features/helpers/constants";
 import Preloader from "../Preloader";
 import s from "./index.module.scss";
 
-export default function CategoryContainer({short = false, title = ''}) {
+export default function CategoryContainer({short = false, title = ""}) {
 
   const {
     data: categories,

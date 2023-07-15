@@ -1,5 +1,5 @@
 import "./index.module.scss";
-import {useParams, redirect} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import React from "react";
 import {useGetCategoriesQuery} from "../../features/api/apiSlice";
 import ProductsContainer from "../../components/ProductsContainer";
@@ -19,15 +19,15 @@ export default function ProductByCategoryPage() {
   const products = data?.data ?? [];
   const category = data?.category ?? {};
 
-  console.log("data", data);
-
   return (
-    data?.status === "ERR" ? <NotFound/> : <ProductsContainer title={category?.title ?? ""}
-                                                              onlySales={false}
-                                                              productsData={products || []}
-                                                              isLoading={isLoading}
-                                                              isSuccess={isSuccess}
-                                                              isError={isError}
-                                                              error={error}/>
+    data?.status === "ERR" ?
+      <NotFound/> :
+      <ProductsContainer title={category?.title ?? ""}
+                         onlySales={false}
+                         productsData={products || []}
+                         isLoading={isLoading}
+                         isSuccess={isSuccess}
+                         isError={isError}
+                         error={error}/>
   );
 }

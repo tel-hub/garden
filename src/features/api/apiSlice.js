@@ -10,15 +10,12 @@ export const apiSlice = createApi({
     getCategories: builder.query({
       query: (category_id) => `/categories/${category_id}`,
       transformResponse(baseQueryReturnValue, meta, arg) {
-        console.log("transformResponse", baseQueryReturnValue, meta, arg);
-
         return baseQueryReturnValue;
       }
     }),
     getProducts: builder.query({
       query: (product_id) => `/products/${product_id}`,
       transformResponse(baseQueryReturnValue, meta, arg) {
-        console.log("transformResponse", baseQueryReturnValue, meta, arg);
         return {data: baseQueryReturnValue};
       }
     }),

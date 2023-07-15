@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useRef} from "react";
 import GoogleMapReact from "google-map-react";
 import {GMAP_API_KEY} from "../../features/helpers/constants";
 
@@ -12,7 +12,6 @@ export default function TelranMap(props) {
   };
 
   const mapRef = useRef(null);
-  const [mapReady, setMapReady] = useState(false);
 
   const renderMarkers = (map, maps) => {
     new maps.Marker({
@@ -25,7 +24,6 @@ export default function TelranMap(props) {
   const onGoogleApiLoaded = ({map, maps}) => {
     mapRef.current = map;
     renderMarkers(map, maps);
-    setMapReady(true);
   };
 
   return (

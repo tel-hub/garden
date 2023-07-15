@@ -272,6 +272,14 @@ body {
   color: $color-red;
 }
 
+.input-error {
+  input {
+    outline: 0 !important;
+    border-color: $color-red;
+    box-shadow: inset 0 0 0 1px $color-red !important;
+  }
+}
+
 .dialog--card {
 
   .dialog--button-confirm {

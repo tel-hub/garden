@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useState} from "react";
 import {DialogModal, useModal} from "react-dialog-confirm";
 import {useDispatch} from "react-redux";
 import {ReactComponent as CrossIcon} from "../../icons/icons8-multiply.svg";
@@ -24,7 +24,7 @@ export default function CartItem(props) {
       dispatch(cartAddItem({...props, count: count}));
     }
     setItemCount(Math.max(1, count));
-  }, [itemCount, count]);
+  }, [itemCount, count, dispatch, props]);
 
   const confirmItemRemoval = () => {
     openModal(

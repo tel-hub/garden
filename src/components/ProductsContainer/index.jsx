@@ -25,9 +25,7 @@ export default function ProductsContainer({
 
   useEffect(() => {
     setProductList(applyProductFilter(productsData, onlySales ? {...filterState, onlySales: true} : filterState));
-  }, [productsData, JSON.stringify(filterState)]);
-
-  console.log("ProductsContainer", onlySales, productsData, productList);
+  }, [productsData, filterState, onlySales]);
 
   return (
     <div className="container">

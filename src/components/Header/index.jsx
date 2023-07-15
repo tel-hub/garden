@@ -23,7 +23,7 @@ export default function Header(props) {
     if (prevLocation && location && prevLocation.pathname !== location.pathname) {
       dispatch(menuUpdate(false));
     }
-  }, [prevLocation, location]);
+  }, [prevLocation, location, dispatch]);
 
   useEffect(() => {
     document.documentElement.classList[burgerOpen ? "add" : "remove"]("__open-mob-menu");

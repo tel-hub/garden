@@ -20,11 +20,11 @@ export default function Footer(props) {
             </div>
 
             <div className={cn(s.footer_soc)}>
-              <a target="_blank" href="#">
+              <a target="_blank" rel="noreferrer" href="#">
                 <InstagramIcon></InstagramIcon>
                 <span>instagram</span>
               </a>
-              <a target="_blank" href="#">
+              <a target="_blank" rel="noreferrer" href="#">
                 <WhatsappIcon></WhatsappIcon>
                 <span>WhatsApp</span>
               </a>
@@ -35,7 +35,7 @@ export default function Footer(props) {
               Address
             </div>
             <div className={cn(s.footer_location)}>
-              <a target="_blank" href="https://www.google.com/search?q=telranDE"
+              <a target="_blank" rel="noreferrer" href="https://www.google.com/search?q=telranDE"
               >Linkstraße 2, 8 OG, 10785, Berlin, Deutschland</a>
             </div>
 

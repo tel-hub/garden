@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from "react";
+import React, {useMemo} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import CartItem from "../CartItem";
 import {usePostOrderMutation} from "../../features/api/apiSlice";
@@ -6,11 +6,12 @@ import {useForm} from "react-hook-form";
 import s from "./index.module.scss";
 import {DialogModal, useModal} from "react-dialog-confirm";
 import {cartClear} from "../../slices/cartSlice";
+import cn from "classnames";
 
-export default function CartContainer({short = false}) {
+export default function CartContainer() {
   const productsList = useSelector((state) => state.cart.products);
   const [postOrder] = usePostOrderMutation();
-  const {register, handleSubmit} = useForm();
+  const {register, handleSubmit, reset, formState: {errors}} = useForm();
   const {openModal} = useModal();
   const dispatch = useDispatch();
 
@@ -25,6 +26,8 @@ export default function CartContainer({short = false}) {
   const onSubmit = (data) => {
     postOrder({...data, productsList})
       .then(result => {
+        reset();
+
         if (result.data.status === "OK") {
           dispatch(cartClear());
           orderConfirmation(result.data.message, "success");
@@ -59,8 +62,10 @@ export default function CartContainer({short = false}) {
           <b>{cartTotal.toFixed(2)}<span className={s.cart_form_currency}>$</span></b>
         </div>
 
-        <div className={s.cart_form_input}>
-          <input {...register("userPhone")} placeholder="Phone number" type="text"/>
+        <div className={cn(s.cart_form_input, errors.hasOwnProperty("userPhone") ? "input-error" : "")}>
+          <input {...register("userPhone", {
+            required: true
+          })} placeholder="Phone number" type="text"/>
         </div>
 
         <button type="submit" disabled={!productsList.length} className={s.cart_form_btn}>Order</button>

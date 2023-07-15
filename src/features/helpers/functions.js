@@ -6,7 +6,7 @@ export const makeRetinaSrc = (url) => {
 };
 
 export const applyProductFilter = (list, filter) => {
-  return list.filter(item => {
+  return (list?.length ? list.filter(item => {
     const itemPrice = item.discont_price || item.price;
 
     if (itemPrice < filter.priceMin) {
@@ -18,7 +18,7 @@ export const applyProductFilter = (list, filter) => {
     }
 
     return true;
-  }).sort((a, b) => {
+  }) : []).sort((a, b) => {
     if (filter.sortBy === "by default") {
       return 0;
     } else if (filter.sortBy === "price desc") {

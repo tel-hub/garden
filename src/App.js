@@ -61,11 +61,11 @@ function App() {
           <Route path={ROUTES.home.path} element={(<MainPage/>)}/>
           <Route path={ROUTES.sale.path} element={(<SalesPage/>)}/> {/* + */}
           <Route path={ROUTES.catalog.path} element={(<CategoriesPage/>)}/> {/* + */}
-          <Route path={ROUTES.categoryId.path}  element={(<ProductByCategoryPage/>)}/> {/* + */}
+          <Route path={ROUTES.categoryId.path} element={(<ProductByCategoryPage/>)}/> {/* + */}
           <Route path={ROUTES.products.path} element={(<ProductsPage/>)}/> {/* + */}
-          <Route path={ROUTES.productsId.path} element={(<ProductInfoPage/>)}/>
-          <Route path={ROUTES.cart.path} element={(<CartPage/>)}/>
-          <Route path="*" element={<NotFound/>}/>
+          <Route path={ROUTES.productsId.path} element={(<ProductInfoPage/>)}/> {/* + */}
+          <Route path={ROUTES.cart.path} element={(<CartPage/>)}/> {/* + */}
+          <Route path="*" element={<NotFound/>}/> {/* + */}
         </Routes>
         {/*</div>*/}
       </main>
