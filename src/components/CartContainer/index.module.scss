@@ -1,3 +1,137 @@
 @import "../../styles/variables";
 @import "../../styles/extends";
 @import "../../styles/mixins";
+
+.cart_block {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin: 20px 0 40px;
+
+  @include respond-to-min($screen-tablet) {
+    grid-template-columns: 1fr 396px;
+    margin-bottom: 60px;
+  }
+
+  @include respond-to-min($screen-desktop) {
+    gap: 60px;
+    margin: 34px 0 100px;
+    grid-template-columns: 1fr 496px;
+  }
+}
+
+.cart_form_title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.03em;
+  padding-bottom: 15px;
+
+  @include respond-to-min($screen-tablet) {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+}
+
+.cart_form_currency {
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 13px;
+  letter-spacing: 0.03em;
+}
+
+.cart_form_total {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  b {
+    font-weight: 600;
+    font-size: 1.3333em;
+    line-height: 1.3548;
+    letter-spacing: 0.03em;
+  }
+
+  @include respond-to-min($screen-tablet) {
+    font-size: 21px;
+    line-height: 28px;
+  }
+
+  @include respond-to-min($screen-desktop) {
+    font-size: 24px;
+    line-height: 31px;
+  }
+
+}
+
+.cart_form_btn {
+  @extend %btn;
+  @extend %btn, .green;
+  width: 100%;
+  font-weight: 600;
+  border-radius: 10px;
+  letter-spacing: 0.03em;
+
+  @include respond-to-min($screen-tablet) {
+    height: 56px;
+    font-size: 22px;
+  }
+
+  @include respond-to-min($screen-desktop) {
+    height: 76px;
+    font-size: 28px;
+  }
+}
+
+.cart_form_input {
+  position: relative;
+
+  input {
+    @extend %input;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.03em;
+    width: 100%;
+
+    @include respond-to-min($screen-tablet) {
+      height: 56px;
+      padding: 0 15px;
+      font-size: 18px;
+    }
+
+    @include respond-to-min($screen-desktop) {
+      padding: 0 20px;
+      height: 76px;
+    }
+  }
+
+}
+
+.cart_form {
+  display: flex;
+  flex-flow: column;
+  gap: 12px;
+  border-radius: 10px;
+  padding: 12px;
+  border: 2px solid $color-black;
+
+  @include respond-to-min($screen-tablet) {
+    gap: 18px;
+  }
+
+  @include respond-to-min($screen-desktop) {
+    gap: 25px;
+  }
+}
+
+.cart_list {
+
+}
+
+

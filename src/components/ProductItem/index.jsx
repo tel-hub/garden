@@ -5,9 +5,12 @@ import {makeRetinaSrc} from "../../features/helpers/functions";
 import {BASE_URL} from "../../features/helpers/constants";
 import PriceBlock from "../PriceBlock";
 import s from "./index.module.scss";
+import {useDispatch} from "react-redux";
+import {filterUpdate} from "../../slices/filterSlice";
 
 export default function ProductItem(props) {
   const {id, image, title, price, discont_price, categoryId} = props;
+  const dispatch = useDispatch();
   const [hasError, setHasError] = useState(false);
 
   const imageError = useCallback((e) => {
@@ -32,7 +35,7 @@ export default function ProductItem(props) {
         />
         <div className="item-image__price">
           <span onClick={() => {
-
+            //dispatch(filterUpdate({...filterState, priceMin: newVal}));
           }} className={s.cart_btn}>Add to cart</span>
         </div>
       </div>

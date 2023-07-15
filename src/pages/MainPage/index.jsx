@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import "./index.scss";
 import Hero from "../../components/Hero";
 import Discount from "../../components/Discount";
 import CategoryContainer from "../../components/CategoryContainer";

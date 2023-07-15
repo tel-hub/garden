@@ -7,7 +7,7 @@ const initialState = {
     priceMin: 0,
     priceMax: Infinity,
     onlySales: false,
-    sortBy: sortOptions[2]
+    sortBy: sortOptions[0]
   }
 };
 

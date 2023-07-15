@@ -161,12 +161,10 @@
 }
 
 .cart {
+  color: $color-black;
+  transition: color .3s;
 
-  svg path {
-    transition: fill .3s;
-  }
-
-  &:hover svg path {
-    fill: $color-green;
+  &:hover {
+    color: $color-green;
   }
 }

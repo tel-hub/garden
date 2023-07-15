@@ -2,8 +2,13 @@ import React, {useEffect, useState} from "react";
 import {useGetProductsQuery} from "../../features/api/apiSlice";
 import Preloader from "../Preloader";
 import ProductItem from "../ProductItem";
+import ConfirmBox from "react-dialog-confirm";
+import {useSelector} from "react-redux";
+import s from "./index.module.scss";
 
 export default function CartContainer({short = false}) {
+  const cartList = useSelector((state) => state.cart);
+
 
   //const {
   //  data: products,
@@ -14,23 +19,26 @@ export default function CartContainer({short = false}) {
   //} = useGetProductsQuery("all");
 
   return (
-    <div className="container">
-      <div className="container-title__holder">
-        <h1 className="container-title">Shopping cart</h1>
-      </div>
+    <div className={s.cart_block}>
+      <div className={s.cart_list}>
 
-      {/*{isLoading ?*/}
-      {/*  <Preloader></Preloader> :*/}
-      {/*  isSuccess && products.length ?*/}
-      {/*    <div className="items-container">*/}
-      {/*      {products.slice(0, short ? 4 : products.length - 1).map((product, index) => <ProductItem*/}
-      {/*        key={index} {...product}/>)}*/}
-      {/*    </div> : isError ?*/}
-      {/*      <div className="error-alert">*/}
-      {/*        {error}*/}
-      {/*      </div> :*/}
-      {/*      <p className="text-center">No Data</p>*/}
-      {/*}*/}
+      </div>
+      <div className={s.cart_form}>
+        <div className={s.cart_form_title}>
+          Order details
+        </div>
+
+        <form className={s.cart_form_total}>
+          <span>Total</span>
+          <b>123<span className={s.cart_form_currency}>$</span></b>
+        </form>
+
+        <div className={s.cart_form_input}>
+          <input placeholder="Phone number" type="text"/>
+        </div>
+
+        <button type="submit" className={s.cart_form_btn}>Order</button>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,16 @@
+@import "../../styles/variables";
+@import "../../styles/extends";
+@import "../../styles/mixins";
+
+.back_link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 17px;
+  color: $color-black;
+  transition: color .3s;
+
+  &:hover {
+    color: $color-green;
+  }
+}

@@ -37,7 +37,7 @@ export default function SalesContainer({short = false}) {
           <div className="items-container">
             {productList.length ? productList.map((product, index) => {
               return <ProductItem key={index} {...product}/>;
-            }) : <p className="text-center wide">No Match</p>}
+            }) : <p className="text-center wide">No Matches</p>}
           </div> : isError ?
             <div className="error-alert">
               {error}
