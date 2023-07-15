@@ -8,6 +8,9 @@ export const DEFAULT_POST_HEADERS = {
   }
 };
 
+export const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+export const PHONE_ERROR_TEXT = "Please use format: [+]XXX-XXX-XXXX[XX]";
+
 export const ROUTES = {
   home: {
     path: "/"

@@ -13,14 +13,12 @@ export default function SalesPage() {
   } = useGetSalesQuery();
 
   return (
-    <>
-      <ProductsContainer title={"Products with sale"}
-                         onlySales={true}
-                         productsData={categories ?? []}
-                         isLoading={isLoading}
-                         isSuccess={isSuccess}
-                         isError={isError}
-                         error={error}/>
-    </>
+    <ProductsContainer title={"Products with sale"}
+                       onlySales={true}
+                       productsData={categories ?? []}
+                       isLoading={isLoading}
+                       isSuccess={isSuccess}
+                       isError={isError}
+                       error={error}/>
   );
 }

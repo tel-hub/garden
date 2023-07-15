@@ -70,10 +70,12 @@ body {
 
 .content {
   flex: 1 0 auto;
-  padding-top: 30px;
+  margin-top: 30px;
+  position: relative;
+  background: inherit;
 
   @include respond-to-min($screen-desktop) {
-    padding-top: 68px;
+    margin-top: 68px;
   }
 }
 
@@ -272,6 +274,17 @@ body {
   color: $color-red;
 }
 
+.input-error-alert {
+  position: absolute;
+  top: 100%;
+  font-size: 11px;
+  margin-top: 3px;
+  right: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .input-error {
   input {
     outline: 0 !important;
@@ -296,4 +309,91 @@ body {
       background-color: darken(#f3f4f6, 5%);
     }
   }
+}
+
+// page transitions
+
+//.fade-appear {
+//  opacity: 0.01;
+//}
+//
+//.fade-appear.fade-appear-active {
+//  opacity: 1;
+//  transition: opacity 500ms ease-in;
+//}
+//
+//.fade-enter {
+//  opacity: 0.01;
+//  transform: translate(100px, 0);
+//  z-index: 1;
+//}
+//
+//.fade-enter.fade-enter-active {
+//  opacity: 1;
+//  transform: translate(0, 0);
+//  transition: opacity 250ms ease-out, transform 300ms ease;
+//}
+//
+//.fade-exit {
+//  opacity: 1;
+//  transform: translate(0, 0);
+//}
+//
+//.fade-exit.fade-exit-active {
+//  opacity: 0;
+//  transform: translate(100px, 0);
+//  transition: opacity 250ms ease-out, transform 300ms ease;
+//}
+
+//.fade-enter {
+//  opacity: 0;
+//  transform: scale(1.1);
+//}
+//
+//.fade-enter-active {
+//  opacity: 1;
+//  transform: scale(1);
+//  transition: opacity 300ms, transform 300ms;
+//}
+//
+//.fade-exit {
+//  opacity: 1;
+//  transform: scale(1);
+//}
+//
+//.fade-exit-active {
+//  opacity: 0;
+//  transform: scale(0.9);
+//  transition: opacity 300ms, transform 300ms;
+//}
+
+/* starting ENTER animation */
+.messageout-enter {
+  opacity: 0.01;
+  transform: translateY(0%) scale(0.01);
+}
+
+/* ending ENTER animation */
+.messageout-enter-active {
+  opacity: 1;
+  transform: translateY(0%) scale(1);
+  transition: all 400ms ease-in-out;
+}
+
+/* starting EXIT animation */
+.messageout-exit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 1;
+  transform: scale(1.01);
+}
+
+/* ending EXIT animation */
+.messageout-exit-active {
+  opacity: 0;
+  transform: scale(1.2);
+  transition: all 400ms ease-in-out;
 }

@@ -7,11 +7,11 @@ import SalesContainer from "../../components/SalesContainer";
 export default function MainPage() {
 
   return (
-    <>
+    <div>
       <Hero></Hero>
       <CategoryContainer short={true} title={"Catalog"}></CategoryContainer>
       <Discount></Discount>
       <SalesContainer></SalesContainer>
-    </>
+    </div>
   );
 }

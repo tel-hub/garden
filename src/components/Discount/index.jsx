@@ -7,6 +7,7 @@ import share3x from "../../images/share@3x.png";
 import {useForm} from "react-hook-form";
 import {usePostSaleMutation} from "../../features/api/apiSlice";
 import {DialogModal, useModal} from "react-dialog-confirm";
+import {PHONE_ERROR_TEXT, PHONE_REGEX} from "../../features/helpers/constants";
 
 export default function Discount(props) {
   const {register, handleSubmit, reset, formState: {errors}} = useForm();
@@ -48,8 +49,14 @@ export default function Discount(props) {
             <form className={cn(s.discount_form)} onSubmit={handleSubmit(onSubmit)}>
               <div className={cn(s.discount_input, errors.hasOwnProperty("userPhone") ? "input-error" : "")}>
                 <input {...register("userPhone", {
-                  required: true
+                  required: true,
+                  pattern: {
+                    value: PHONE_REGEX,
+                    message: PHONE_ERROR_TEXT
+                  }
                 })} placeholder="+49" type="text"/>
+                {errors.hasOwnProperty("userPhone") ?
+                  <span className="error-alert input-error-alert">{errors.userPhone.message}</span> : null}
               </div>
               <button className={s.discount_btn}>Get a discount</button>
             </form>

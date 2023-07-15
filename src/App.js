@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {Route, Routes, useLocation} from "react-router-dom";
 
 import {ROUTES} from "./features/helpers/constants";
@@ -16,6 +16,7 @@ import CategoriesPage from "./pages/CategoriesPage";
 import CartPage from "./pages/CartPage";
 import ProductInfoPage from "./pages/ProductInfoPage";
 import SalesPage from "./pages/SalesPage";
+import {TransitionGroup, CSSTransition} from "react-transition-group";
 import "./App.scss";
 
 function App() {
@@ -24,8 +25,6 @@ function App() {
   const location = useLocation();
   const prevLocation = usePrevious(location);
   const pageScrolled = useSelector((state) => state.interface.pageScrolled);
-  const [transitionStage, setTransitionStage] = useState("fadeIn");
-  const [displayLocation, setDisplayLocation] = useState(location);
 
   useEffect(() => {
     let newScrollTop = scrollPosition > 100;
@@ -33,41 +32,28 @@ function App() {
     if (pageScrolled !== newScrollTop) {
       dispatch(pageScrolledToggle(newScrollTop));
     }
-
   }, [scrollPosition, pageScrolled]);
-
-  useEffect(() => {
-    if (JSON.stringify(location) !== JSON.stringify(displayLocation)) {
-      setTransitionStage("fadeOut");
-    }
-  }, [prevLocation, location, displayLocation]);
 
   return (
     <React.Fragment>
       <Header prevLocation={prevLocation}/>
 
       <main className="content">
-        {/*<div*/}
-        {/*  key={location.pathname}*/}
-        {/*  className={`${transitionStage}`}*/}
-        {/*  onAnimationEnd={() => {*/}
-        {/*    if (transitionStage === "fadeOut") {*/}
-        {/*      setTransitionStage("fadeIn");*/}
-        {/*      setDisplayLocation(location);*/}
-        {/*    }*/}
-        {/*  }}*/}
-        {/*>*/}
-        <Routes location={location}>
-          <Route path={ROUTES.home.path} element={(<MainPage/>)}/>
-          <Route path={ROUTES.sale.path} element={(<SalesPage/>)}/> {/* + */}
-          <Route path={ROUTES.catalog.path} element={(<CategoriesPage/>)}/> {/* + */}
-          <Route path={ROUTES.categoryId.path} element={(<ProductByCategoryPage/>)}/> {/* + */}
-          <Route path={ROUTES.products.path} element={(<ProductsPage/>)}/> {/* + */}
-          <Route path={ROUTES.productsId.path} element={(<ProductInfoPage/>)}/> {/* + */}
-          <Route path={ROUTES.cart.path} element={(<CartPage/>)}/> {/* + */}
-          <Route path="*" element={<NotFound/>}/> {/* + */}
-        </Routes>
-        {/*</div>*/}
+        <TransitionGroup component={null}>
+          <CSSTransition key={location.key} appear={true} classNames="messageout" timeout={{enter: 400, exit: 400}}
+          >
+            <Routes location={location}>
+              <Route path={ROUTES.home.path} element={(<MainPage/>)}/>
+              <Route path={ROUTES.sale.path} element={(<SalesPage/>)}/>
+              <Route path={ROUTES.catalog.path} element={(<CategoriesPage/>)}/>
+              <Route path={ROUTES.categoryId.path} element={(<ProductByCategoryPage/>)}/>
+              <Route path={ROUTES.products.path} element={(<ProductsPage/>)}/>
+              <Route path={ROUTES.productsId.path} element={(<ProductInfoPage/>)}/>
+              <Route path={ROUTES.cart.path} element={(<CartPage/>)}/>
+              <Route path="*" element={<NotFound/>}/>
+            </Routes>
+          </CSSTransition>
+        </TransitionGroup>
       </main>
 
       <Footer/>

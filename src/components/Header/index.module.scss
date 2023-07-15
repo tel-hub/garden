@@ -109,6 +109,7 @@
     }
 
     &:global(.active) {
+      pointer-events: none;
       color: $color-green;
       cursor: default;
       text-decoration: underline;

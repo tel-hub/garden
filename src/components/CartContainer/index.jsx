@@ -7,6 +7,7 @@ import s from "./index.module.scss";
 import {DialogModal, useModal} from "react-dialog-confirm";
 import {cartClear} from "../../slices/cartSlice";
 import cn from "classnames";
+import {PHONE_ERROR_TEXT, PHONE_REGEX} from "../../features/helpers/constants";
 
 export default function CartContainer() {
   const productsList = useSelector((state) => state.cart.products);
@@ -24,7 +25,7 @@ export default function CartContainer() {
   };
 
   const onSubmit = (data) => {
-    postOrder({...data, productsList})
+    postOrder({...data, items: productsList.map(m => ({id: m.id, count: m.count}))})
       .then(result => {
         reset();
 
@@ -64,8 +65,14 @@ export default function CartContainer() {
 
         <div className={cn(s.cart_form_input, errors.hasOwnProperty("userPhone") ? "input-error" : "")}>
           <input {...register("userPhone", {
-            required: true
+            required: true,
+            pattern: {
+              value: PHONE_REGEX,
+              message: PHONE_ERROR_TEXT
+            }
           })} placeholder="Phone number" type="text"/>
+          {errors.hasOwnProperty("userPhone") ?
+            <span className="error-alert input-error-alert">{errors.userPhone.message}</span> : null}
         </div>
 
         <button type="submit" disabled={!productsList.length} className={s.cart_form_btn}>Order</button>

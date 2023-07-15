@@ -22,8 +22,6 @@ export default function ProductInfoPage() {
 
   const productInfo = data?.data?.[0] ?? null;
 
-  console.log("productInfo", product_id, isLoading, productInfo);
-
   return (
     <div className="container">
       {isLoading ?
