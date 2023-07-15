@@ -20,7 +20,9 @@ export default function SalesContainer({short = false}) {
   } = useGetSalesQuery();
 
   useEffect(() => {
-    setProductList(short ? categories.slice(0, 3) : applyProductFilter(categories, filterState));
+    if (categories?.length) {
+      setProductList(short ? categories.slice(0, 3) : applyProductFilter(categories, filterState));
+    }
   }, [categories, short, JSON.stringify(filterState)]);
 
   return (

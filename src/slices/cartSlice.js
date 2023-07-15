@@ -17,10 +17,9 @@ export const cartSlice = createSlice({
       } else {
         state.products[index].count += 1;
       }
-
     },
     cartRemoveItem: (state, action) => {
-      state.products = action.payload;
+      state.products = state.products.filter(f => f.id !== action.payload);
     },
     cartClear: (state) => {
       state.products = [];

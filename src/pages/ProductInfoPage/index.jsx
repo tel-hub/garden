@@ -7,6 +7,7 @@ import {BASE_URL} from "../../features/helpers/constants";
 import Preloader from "../../components/Preloader";
 import s from "./index.module.scss";
 import PriceBlock from "../../components/PriceBlock";
+import ProductImageLoader from "../../components/ProductImageLoader";
 
 export default function ProductInfoPage() {
   const {product_id} = useParams();
@@ -41,13 +42,9 @@ export default function ProductInfoPage() {
 
             <div className={s.product_block}>
               <div className={s.product_images}>
-                <LazyLoadImage
-                  alt={productInfo.title}
-                  threshold={300}
-                  effect={"opacity"}
-                  //placeholder={<Preloader></Preloader>}
-                  {...makeRetinaSrc(BASE_URL + productInfo.image)}
-                  onError={imageError}
+                <ProductImageLoader
+                  image={productInfo.image}
+                  name={productInfo?.title ?? ""}
                 />
               </div>
 

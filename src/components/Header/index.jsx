@@ -80,7 +80,7 @@ export default function Header(props) {
           <div className={s.cart_block}>
             <Link to={ROUTES.cart.path} className={s.cart}>
               <CartIcon></CartIcon>
-              <span className={s.cart_counter}>{productsList.length}</span>
+              {productsList.length ? <span className={s.cart_counter}>{productsList.length}</span> : null}
             </Link>
           </div>
         </div>

@@ -14,10 +14,11 @@ export default function CartPage() {
       </div>
 
       <p className="text-center">
-        <Link className={s.back_link} to={ROUTES.catalog.path}><span>Back to the store</span><ForwardIcon></ForwardIcon></Link>
+        <Link className={s.back_link}
+              to={ROUTES.products.path}><span>Back to the store</span><ForwardIcon></ForwardIcon></Link>
       </p>
 
-      <CartContainer></CartContainer>
+      <CartContainer/>
     </div>
   );
 }

@@ -26,8 +26,8 @@ export default function ProductsContainer({short = false}) {
         <Preloader></Preloader> :
         isSuccess && products.length ?
           <div className="items-container">
-            {products.slice(0, short ? 4 : products.length - 1).map((product, index) => <ProductItem
-              key={index} {...product}/>)}
+            {products.slice(0, short ? 4 : products.length - 1)
+              .map((product, index) => <ProductItem key={index} {...product}/>)}
           </div> : isError ?
             <div className="error-alert">
               {error}

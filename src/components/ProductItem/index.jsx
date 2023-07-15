@@ -1,38 +1,22 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useState} from "react";
 import {Link} from "react-router-dom";
-import {LazyLoadImage} from "react-lazy-load-image-component";
-import {makeRetinaSrc} from "../../features/helpers/functions";
-import {BASE_URL} from "../../features/helpers/constants";
 import PriceBlock from "../PriceBlock";
 import s from "./index.module.scss";
 import {useDispatch} from "react-redux";
-import {filterUpdate} from "../../slices/filterSlice";
 import {cartAddItem} from "../../slices/cartSlice";
+import ProductImageLoader from "../ProductImageLoader";
 
 export default function ProductItem(props) {
   const {id, image, title, price, discont_price, categoryId} = props;
   const dispatch = useDispatch();
-  const [hasError, setHasError] = useState(false);
-
-  const imageError = useCallback((e) => {
-    if (!hasError) {
-      setHasError(true);
-      e.target.parentElement.innerHTML = `<img alt="${e.target.alt}" src="${e.target.src}" loading="lazy">`;
-    }
-  }, [hasError]);
 
   return (
     <div className="grid-item">
       <div className="item-image__holder">
-        <LazyLoadImage
-          alt={title}
-          threshold={300}
-          effect={"opacity"}
+        <ProductImageLoader
+          image={image}
+          name={title}
           wrapperClassName={"item-image __product"}
-          src={BASE_URL + image}
-          //placeholder={<Preloader></Preloader>}
-          {...makeRetinaSrc(BASE_URL + image)}
-          onError={imageError}
         />
         <div className="item-image__price">
           <span onClick={() => {
