@@ -15,7 +15,7 @@ export const cartSlice = createSlice({
       if (index === -1) {
         state.products.push(product);
       } else {
-        state.products[index].count += 1;
+        state.products[index].count = product.count;
       }
     },
     cartRemoveItem: (state, action) => {

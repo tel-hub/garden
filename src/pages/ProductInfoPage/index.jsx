@@ -1,9 +1,6 @@
-import React, {useCallback, useState} from "react";
+import React from "react";
 import {useParams} from "react-router-dom";
 import {useGetProductsQuery} from "../../features/api/apiSlice";
-import {LazyLoadImage} from "react-lazy-load-image-component";
-import {makeRetinaSrc} from "../../features/helpers/functions";
-import {BASE_URL} from "../../features/helpers/constants";
 import Preloader from "../../components/Preloader";
 import s from "./index.module.scss";
 import PriceBlock from "../../components/PriceBlock";
@@ -11,7 +8,6 @@ import ProductImageLoader from "../../components/ProductImageLoader";
 
 export default function ProductInfoPage() {
   const {product_id} = useParams();
-  const [hasError, setHasError] = useState(false);
 
   const {
     data,
@@ -22,13 +18,6 @@ export default function ProductInfoPage() {
   } = useGetProductsQuery(product_id);
 
   const productInfo = data?.[0] ?? null;
-
-  const imageError = useCallback((e) => {
-    if (!hasError) {
-      setHasError(true);
-      e.target.parentElement.innerHTML = `<img alt="${e.target.alt}" src="${e.target.src}" loading="lazy">`;
-    }
-  }, [hasError]);
 
   return (
     <div className="container">

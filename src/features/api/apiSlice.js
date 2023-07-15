@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {BASE_URL} from "../../features/helpers/constants";
+import {BASE_URL} from "../helpers/constants";
 
 export const apiSlice = createApi({
   reducerPath: "api",
@@ -34,31 +34,27 @@ export const apiSlice = createApi({
         }, []);
       }
     }),
-    postSale: builder.query({
-      query: () => "/sale/send"
-      //transformResponse(baseQueryReturnValue, meta, arg) {
-      //  return baseQueryReturnValue.reduce((acc, item) => {
-      //    if (item.discont_price !== null) {
-      //      acc.push(item);
-      //    }
-      //
-      //    return acc;
-      //  }, []);
-      //}
+    postSale: builder.mutation({
+      query: (body) => ({
+        url: "/sale/send",
+        method: "POST",
+        body
+      })
     }),
-    postOrder: builder.query({
-      query: () => "/order/send"
-      //transformResponse(baseQueryReturnValue, meta, arg) {
-      //  return baseQueryReturnValue.reduce((acc, item) => {
-      //    if (item.discont_price !== null) {
-      //      acc.push(item);
-      //    }
-      //
-      //    return acc;
-      //  }, []);
-      //}
+    postOrder: builder.mutation({
+      query: (body) => ({
+        url: "/order/send",
+        method: "POST",
+        body
+      })
     })
   })
 });
 
-export const {useGetCategoriesQuery, useGetProductsQuery, useGetSalesQuery} = apiSlice;
+export const {
+  useGetCategoriesQuery,
+  useGetProductsQuery,
+  useGetSalesQuery,
+  usePostSaleMutation,
+  usePostOrderMutation
+} = apiSlice;

@@ -101,17 +101,7 @@
     line-height: 28px;
     letter-spacing: 0.03em;
     width: 100%;
-
-    @include respond-to-min($screen-tablet) {
-      height: 56px;
-      padding: 0 15px;
-      font-size: 18px;
-    }
-
-    @include respond-to-min($screen-desktop) {
-      padding: 0 20px;
-      height: 76px;
-    }
+    height: 40px;
   }
 
 }

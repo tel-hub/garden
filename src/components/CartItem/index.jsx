@@ -5,13 +5,27 @@ import {ReactComponent as CrossIcon} from "../../icons/icons8-multiply.svg";
 import s from "./index.module.scss";
 import PriceBlock from "../PriceBlock";
 import ProductImageLoader from "../ProductImageLoader";
-import {cartRemoveItem} from "../../slices/cartSlice";
+import {cartAddItem, cartRemoveItem} from "../../slices/cartSlice";
 import {Link} from "react-router-dom";
 
 export default function CartItem(props) {
-  const {id, title, price, discont_price, description, image, count, categoryId} = props;
+  const {id, title, price, discont_price, image, count, categoryId} = props;
   const dispatch = useDispatch();
   const {openModal, closeModal} = useModal();
+
+  const confirmItemRemoval = () => {
+    openModal(
+      <DialogModal
+        icon="warning"
+        hasCancel
+        title={<span>Remove item <br/>&laquo;{title}&raquo;?</span>}
+        description={"Confirm or cancel"}
+        onConfirm={() => {
+          dispatch(cartRemoveItem(id));
+          closeModal();
+        }}
+      />);
+  };
 
   return (
     <div className={s.cart_item}>
@@ -34,21 +48,21 @@ export default function CartItem(props) {
       </div>
 
       <div className={s.cart_item_controls}>
-        <input placeholder="Phone number" type="text"/>
+
+        <input defaultValue={count} min={0} type="number" onChange={e => {
+          const newCount = +e.target.value;
+
+          if (newCount === 0) {
+            e.target.value = "1";
+            confirmItemRemoval();
+          } else {
+            dispatch(cartAddItem({...props, count: newCount}));
+          }
+        }}/>
       </div>
 
       <span className={s.cart_item_remove} onClick={() => {
-        openModal(
-          <DialogModal
-            icon="warning"
-            hasCancel
-            title={<span>Remove item <br/>&laquo;{title}&raquo;?</span>}
-            description={"Confirm or cancel"}
-            onConfirm={() => {
-              dispatch(cartRemoveItem(id));
-              closeModal();
-            }}
-          />);
+        confirmItemRemoval();
       }}><CrossIcon></CrossIcon></span>
     </div>
   );

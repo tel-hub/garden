@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import Hero from "../../components/Hero";
 import Discount from "../../components/Discount";
 import CategoryContainer from "../../components/CategoryContainer";

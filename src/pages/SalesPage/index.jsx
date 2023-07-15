@@ -1,5 +1,4 @@
-import "./index.module.scss";
-import React, {useEffect, useState} from "react";
+import React from "react";
 import SalesContainer from "../../components/SalesContainer";
 
 export default function SalesPage() {
