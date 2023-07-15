@@ -124,6 +124,8 @@
 
   @include respond-to-min($screen-tablet) {
     gap: 18px;
+    position: sticky;
+    top: 80px;
   }
 
   @include respond-to-min($screen-desktop) {

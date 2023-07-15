@@ -20,13 +20,15 @@ export default function ProductInfoPage() {
     error
   } = useGetProductsQuery(product_id);
 
-  const productInfo = data?.[0] ?? null;
+  const productInfo = data?.data?.[0] ?? null;
+
+  console.log("productInfo", product_id, isLoading, productInfo);
 
   return (
     <div className="container">
       {isLoading ?
         <Preloader></Preloader> :
-        isSuccess && data.length ?
+        isSuccess && data?.data?.length ?
           <>
             <div className="container-title__holder">
               <h1 className="container-title">{productInfo?.title ?? ""}</h1>

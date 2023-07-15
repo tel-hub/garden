@@ -1,17 +1,12 @@
 import "./index.module.scss";
-import {useParams} from "react-router-dom";
-import React, {useEffect, useState} from "react";
-import ProductItem from "../../components/ProductItem";
+import {useParams, redirect} from "react-router-dom";
+import React from "react";
 import {useGetCategoriesQuery} from "../../features/api/apiSlice";
-import Preloader from "../../components/Preloader";
-import ProductsFilter from "../../components/ProductsFilter";
-import {applyProductFilter} from "../../features/helpers/functions";
-import {useSelector} from "react-redux";
+import ProductsContainer from "../../components/ProductsContainer";
+import NotFound from "../NotFound";
 
 export default function ProductByCategoryPage() {
   const {category_id} = useParams();
-  const [productList, setProductList] = useState([]);
-  const {filter: filterState} = useSelector((state) => state.filter);
 
   const {
     data,
@@ -24,30 +19,15 @@ export default function ProductByCategoryPage() {
   const products = data?.data ?? [];
   const category = data?.category ?? {};
 
-  useEffect(() => {
-    setProductList(applyProductFilter(products, filterState));
-  }, [products, JSON.stringify(filterState)]);
+  console.log("data", data);
 
   return (
-    <div className="container">
-      <div className="container-title__holder">
-        <h1 className="container-title">{category?.title ?? ""}</h1>
-      </div>
-
-      <ProductsFilter/>
-
-      {isLoading ?
-        <Preloader></Preloader> :
-        isSuccess && products.length ?
-          <div className="items-container">
-            {productList.length ? productList.map((product, index) => <ProductItem
-              key={index} {...product}/>) : <p className="text-center wide">No Matches</p>}
-          </div> : isError ?
-            <div className="error-alert">
-              {error}
-            </div> :
-            <p className="text-center wide">No Data</p>
-      }
-    </div>
+    data?.status === "ERR" ? <NotFound/> : <ProductsContainer title={category?.title ?? ""}
+                                                              onlySales={false}
+                                                              productsData={products || []}
+                                                              isLoading={isLoading}
+                                                              isSuccess={isSuccess}
+                                                              isError={isError}
+                                                              error={error}/>
   );
 }

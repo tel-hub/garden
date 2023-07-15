@@ -6,7 +6,7 @@ import {ROUTES} from "../../features/helpers/constants";
 import Preloader from "../Preloader";
 import s from "./index.module.scss";
 
-export default function CategoryContainer({short = false, title = ""}) {
+export default function CategoryContainer({short = false, title = ''}) {
 
   const {
     data: categories,

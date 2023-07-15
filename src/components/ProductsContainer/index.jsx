@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {useGetProductsQuery} from "../../features/api/apiSlice";
 import Preloader from "../Preloader";
 import ProductItem from "../ProductItem";
 import ProductsFilter from "../ProductsFilter";
@@ -12,7 +11,7 @@ import s from "../CategoryContainer/index.module.scss";
 export default function ProductsContainer({
                                             hideFilter = false,
                                             short = false,
-                                            showSale = true,
+                                            onlySales = true,
                                             title = "",
                                             productsData = [],
                                             isLoading = false,
@@ -25,12 +24,10 @@ export default function ProductsContainer({
   const {filter: filterState} = useSelector((state) => state.filter);
 
   useEffect(() => {
-    if (productsData?.length) {
-      setProductList(applyProductFilter(productsData, filterState));
-    }
+    setProductList(applyProductFilter(productsData, onlySales ? {...filterState, onlySales: true} : filterState));
   }, [productsData, JSON.stringify(filterState)]);
 
-  console.log("ProductsContainer", productsData, productList);
+  console.log("ProductsContainer", onlySales, productsData, productList);
 
   return (
     <div className="container">
@@ -42,7 +39,7 @@ export default function ProductsContainer({
           : null}
       </div>
 
-      {short || hideFilter ? null : <ProductsFilter showSale={showSale}></ProductsFilter>}
+      {short || hideFilter ? null : <ProductsFilter showSale={!onlySales}></ProductsFilter>}
 
       {isLoading ?
         <Preloader></Preloader> :

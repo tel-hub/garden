@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import s from "./index.module.scss";
 import Checkbox from "../Checkbox";
 import {filterUpdate, sortOptions} from "../../slices/filterSlice";
@@ -41,9 +41,7 @@ export default function ProductsFilter({showSale = true}) {
         <select className={s.filter_select} defaultValue={filterState.sortBy} onChange={e => {
           dispatch(filterUpdate({...filterState, sortBy: e.target.value}));
         }}>
-          {sortOptions.map((opt, index) => {
-            return <option key={index} value={opt}>{opt}</option>;
-          })}
+          {sortOptions.map((o, oi) => <option key={oi} value={o}>{o}</option>)}
         </select>
       </div>
     </div>

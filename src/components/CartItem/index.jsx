@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {DialogModal, useModal} from "react-dialog-confirm";
 import {useDispatch} from "react-redux";
 import {ReactComponent as CrossIcon} from "../../icons/icons8-multiply.svg";
@@ -15,6 +15,16 @@ export default function CartItem(props) {
   const {id, title, price, discont_price, image, count, categoryId} = props;
   const dispatch = useDispatch();
   const {openModal, closeModal} = useModal();
+  const [itemCount, setItemCount] = useState(count);
+
+  const changeItemCount = useCallback((count) => {
+    if (count === 0) {
+      confirmItemRemoval();
+    } else {
+      dispatch(cartAddItem({...props, count: count}));
+    }
+    setItemCount(Math.max(1, count));
+  }, [itemCount, count]);
 
   const confirmItemRemoval = () => {
     openModal(
@@ -25,6 +35,10 @@ export default function CartItem(props) {
         description={"Confirm or cancel"}
         onConfirm={() => {
           dispatch(cartRemoveItem(id));
+          closeModal();
+        }}
+        onCancel={() => {
+          changeItemCount(1);
           closeModal();
         }}
       />);
@@ -51,22 +65,19 @@ export default function CartItem(props) {
       </div>
 
       <div className={s.cart_item_controls}>
-        <span className={s.cart_item_minus}>
+        <span className={s.cart_item_minus} onClick={() => {
+          changeItemCount(count - 1);
+        }}>
           <MinusIcon/>
         </span>
 
-        <input defaultValue={count} min={0} type="number" onChange={e => {
-          const newCount = +e.target.value;
-
-          if (newCount === 0) {
-            e.target.value = "1";
-            confirmItemRemoval();
-          } else {
-            dispatch(cartAddItem({...props, count: newCount}));
-          }
+        <input value={String(itemCount)} min={0} type="number" onChange={e => {
+          changeItemCount(+e.target.value);
         }}/>
 
-        <span className={s.cart_item_plus}>
+        <span className={s.cart_item_plus} onClick={() => {
+          changeItemCount(count + 1);
+        }}>
           <PlusIcon/>
         </span>
       </div>

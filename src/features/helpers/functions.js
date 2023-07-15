@@ -13,7 +13,7 @@ export const applyProductFilter = (list, filter) => {
       return false;
     } else if (itemPrice > filter.priceMax) {
       return false;
-    } else if (filter.onlySales && item.discont_price !== null) {
+    } else if (filter.onlySales && item.discont_price === null) {
       return false;
     }
 
