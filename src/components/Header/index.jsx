@@ -24,7 +24,6 @@ export default function Header(props) {
   const [cartCounter, setCartCounter] = useState(productsList.length);
   const prevCartCounter = usePrevious(productsList.length);
 
-  const htmlRoot = document.documentElement;
   const cartFlyRef = useRef(null);
 
   useEffect(() => {
@@ -44,6 +43,8 @@ export default function Header(props) {
   }, [prevCartCounter, productsList.length]);
 
   useEffect(() => {
+    const htmlRoot = document.documentElement;
+
     if (cartFlyRef?.current && cartFlyOptions && (cartFlyOptions.top + cartFlyOptions.left) !== 0) {
       const parentRect = cartFlyRef?.current.parentElement.getBoundingClientRect();
 

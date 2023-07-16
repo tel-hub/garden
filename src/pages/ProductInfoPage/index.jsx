@@ -5,14 +5,10 @@ import Preloader from "../../components/Preloader";
 import s from "./index.module.scss";
 import PriceBlock from "../../components/PriceBlock";
 import ProductImageLoader from "../../components/ProductImageLoader";
-import {cartAddItem} from "../../slices/cartSlice";
-import {useDispatch} from "react-redux";
-import {setCartFlyOptions} from "../../slices/interfaceSlice";
 import CartButton from "../../components/CartButton";
 
 export default function ProductInfoPage() {
   const {product_id} = useParams();
-  const dispatch = useDispatch();
 
   const {
     data,
