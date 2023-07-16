@@ -7,6 +7,7 @@ import PriceBlock from "../../components/PriceBlock";
 import ProductImageLoader from "../../components/ProductImageLoader";
 import {cartAddItem} from "../../slices/cartSlice";
 import {useDispatch} from "react-redux";
+import {setCartFlyOffset} from "../../slices/interfaceSlice";
 
 export default function ProductInfoPage() {
   const {product_id} = useParams();
@@ -45,7 +46,11 @@ export default function ProductInfoPage() {
                             discount_price={productInfo?.discont_price}></PriceBlock>
 
                 <div className={s.product_cart}>
-                  <span className={s.cart_btn} onClick={() => {
+                  <span className={s.cart_btn} onClick={(e) => {
+                    const radius = parseFloat(document.defaultView.getComputedStyle(e.target)?.borderRadius ?? "0");
+                    const bg = document.defaultView.getComputedStyle(e.target)?.backgroundColor ?? "none";
+                    const {left, top, width, height} = e.target.getBoundingClientRect();
+                    dispatch(setCartFlyOffset({left, top, width, height, radius, bg}));
                     dispatch(cartAddItem({...productInfo, count: -1}));
                   }}>To cart</span>
                 </div>

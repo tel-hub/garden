@@ -166,7 +166,7 @@
   padding: 2px;
   font-size: 10px;
   line-height: 12px;
-  background: $color-black;
+  background: $color-green;
   color: $color-white;
   display: flex;
   align-items: center;
@@ -174,17 +174,49 @@
 }
 
 .cart_fly {
-  --fly-size: 10px;
   position: absolute;
-  transition: all 1s;
   bottom: 0;
   right: 0;
   pointer-events: none;
   z-index: 2;
+  will-change: transform;
+  width: var(--cart-fly-width);
+  height: var(--cart-fly-height);
+  border-radius: var(--cart-fly-radius);
+  transform: translate(var(--cart-fly-x), var(--cart-fly-y));
+
+  &::before {
+    content: '';
+    position: absolute;
+    background: var(--cart-fly-bg);
+    border-radius: inherit;
+  }
+}
+
+.cart_fly_active {
+  --fly-size: 10px;
+  transition: border-radius var(--cart-fly-time),
+  width var(--cart-fly-time),
+  height var(--cart-fly-time),
+  transform var(--cart-fly-time) cubic-bezier(.09, .11, .28, .88);
+
+  transform: translate(0, 0);
   width: var(--fly-size);
   height: var(--fly-size);
-  background: $color-green;
   border-radius: 100%;
+
+  &::before {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition-delay: calc(var(--cart-fly-time) * .6);
+    transition-duration: calc(var(--cart-fly-time) * .4);
+    transition-property: background;
+    background: $color-green;
+    border: 2px solid $color-green;
+    box-shadow: 0 6px 30px 0 rgba(0, 0, 0, 0.5);
+  }
 
   @include respond-to-min($screen-desktop) {
     --fly-size: 16px;

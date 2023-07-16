@@ -48,6 +48,13 @@ input[type=number]::-webkit-outer-spin-button {
 
 html {
   @include custom-scroll;
+  --cart-fly-time: 500ms;
+  --cart-fly-x: 0px;
+  --cart-fly-y: 0px;
+  --cart-fly-radius: 0px;
+  --cart-fly-width: 0px;
+  --cart-fly-height: 0px;
+  --cart-fly-bg: #{$color-green};
   overflow-y: scroll;
   scroll-behavior: smooth;
   height: 100%;

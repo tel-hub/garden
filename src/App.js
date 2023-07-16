@@ -32,7 +32,7 @@ function App() {
     if (pageScrolled !== newScrollTop) {
       dispatch(pageScrolledToggle(newScrollTop));
     }
-  }, [scrollPosition, pageScrolled]);
+  }, [scrollPosition, pageScrolled, dispatch]);
 
   return (
     <React.Fragment>

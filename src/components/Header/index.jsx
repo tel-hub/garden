@@ -1,5 +1,5 @@
-import React, {useEffect, useMemo} from "react";
-import {Link, NavLink} from "react-router-dom";
+import React, {useEffect, useMemo, useState, useRef} from "react";
+import {NavLink} from "react-router-dom";
 import {ROUTES} from "../../features/helpers/constants";
 import cn from "classnames";
 import s from "./index.module.scss";
@@ -8,15 +8,20 @@ import logo from "../../images/logo.png";
 import logo2x from "../../images/logo@2x.png";
 import logo3x from "../../images/logo@3x.png";
 import {useDispatch, useSelector} from "react-redux";
-import {menuToggle, menuUpdate} from "../../slices/interfaceSlice";
+import {menuToggle, menuUpdate, setCartFlyOffset} from "../../slices/interfaceSlice";
 import {useLocation} from "react-router-dom";
 
 export default function Header(props) {
   const productsList = useSelector((state) => state.cart.products);
-  const burgerOpen = useSelector((state) => state.interface.burgerOpen);
+  const {burgerOpen, cartFlyOffset} = useSelector((state) => state.interface);
   const pageScrolled = useSelector((state) => state.interface.pageScrolled);
   const dispatch = useDispatch();
   const location = useLocation();
+  const [cartFlyActive, setCartFlyActive] = useState(false);
+  const [cartCounter, setCartCounter] = useState(productsList.length);
+  const htmlRoot = document.documentElement;
+  const cartFlyRef = useRef(null);
+
   const prevLocation = props.prevLocation;
 
   useEffect(() => {
@@ -28,6 +33,28 @@ export default function Header(props) {
   useEffect(() => {
     document.documentElement.classList[burgerOpen ? "add" : "remove"]("__open-mob-menu");
   }, [burgerOpen]);
+
+  useEffect(() => {
+    if (cartFlyRef?.current && cartFlyOffset && (cartFlyOffset.top + cartFlyOffset.left) !== 0) {
+      const parentRect = cartFlyRef?.current.parentElement.getBoundingClientRect();
+
+      htmlRoot.style.setProperty("--cart-fly-width", `${cartFlyOffset.width}px`);
+      htmlRoot.style.setProperty("--cart-fly-height", `${cartFlyOffset.height}px`);
+      htmlRoot.style.setProperty("--cart-fly-radius", `${cartFlyOffset.radius}px`);
+      htmlRoot.style.setProperty("--cart-fly-bg", cartFlyOffset.bg);
+      htmlRoot.style.setProperty("--cart-fly-x", `${cartFlyOffset.left - parentRect.x + cartFlyOffset.width - parentRect.width}px`);
+      htmlRoot.style.setProperty("--cart-fly-y", `${cartFlyOffset.top - parentRect.y + parentRect.height}px`);
+      setCartFlyActive(true);
+    } else {
+      htmlRoot.style.setProperty("--cart-fly-width", "0px");
+      htmlRoot.style.setProperty("--cart-fly-height", "0px");
+      htmlRoot.style.setProperty("--cart-fly-radius", "0px");
+      htmlRoot.style.setProperty("--cart-fly-bg", "#393");
+      htmlRoot.style.setProperty("--cart-fly-x", "0px");
+      htmlRoot.style.setProperty("--cart-fly-y", "0px");
+      setCartFlyActive(false);
+    }
+  }, [cartFlyOffset, cartFlyActive, cartFlyRef]);
 
   const navList = useMemo(() => {
     return [
@@ -80,8 +107,12 @@ export default function Header(props) {
           <div className={s.cart_block}>
             <NavLink to={ROUTES.cart.path} className={s.cart}>
               <CartIcon></CartIcon>
-              {/*<span className={s.cart_fly}/>*/}
-              {productsList.length ? <span className={s.cart_counter}>{productsList.length}</span> : null}
+              <span ref={cartFlyRef} className={cn(s.cart_fly, cartFlyActive ? s.cart_fly_active : "")}
+                    onTransitionEnd={(e) => {
+                      setCartCounter(productsList.length);
+                      dispatch(setCartFlyOffset({top: 0, left: 0, width: 0, height: 0, radius: 0, bg: "#393"}));
+                    }}></span>
+              {cartCounter ? <span className={s.cart_counter}>{cartCounter}</span> : null}
             </NavLink>
           </div>
         </div>

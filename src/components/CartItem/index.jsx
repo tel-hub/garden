@@ -17,15 +17,6 @@ export default function CartItem(props) {
   const {openModal, closeModal} = useModal();
   const [itemCount, setItemCount] = useState(count);
 
-  const changeItemCount = useCallback((count) => {
-    if (count === 0) {
-      confirmItemRemoval();
-    } else {
-      dispatch(cartAddItem({...props, count: count}));
-    }
-    setItemCount(Math.max(1, count));
-  }, [itemCount, count, dispatch, props]);
-
   const confirmItemRemoval = () => {
     openModal(
       <DialogModal
@@ -43,6 +34,15 @@ export default function CartItem(props) {
         }}
       />);
   };
+
+  const changeItemCount = useCallback((count) => {
+    if (count === 0) {
+      confirmItemRemoval();
+    } else {
+      dispatch(cartAddItem({...props, count: count}));
+    }
+    setItemCount(Math.max(1, count));
+  }, [itemCount, count, dispatch, props, confirmItemRemoval]);
 
   return (
     <div className={s.cart_item}>
