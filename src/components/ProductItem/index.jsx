@@ -11,11 +11,12 @@ export default function ProductItem(props) {
   return (
     <div className="grid-item">
       <div className="item-image__holder">
-        <ProductImageLoader
-          image={image}
-          name={title}
-          wrapperClassName={"item-image __product"}
-        />
+        <Link to={`/product/${id}`} className={"item-image __product"}>
+          <ProductImageLoader
+            image={image}
+            name={title}
+          />
+        </Link>
         <div className="item-image__price">
           <CartButton productInfo={props} className={s.cart_btn}>Add to cart</CartButton>
         </div>

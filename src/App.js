@@ -48,6 +48,7 @@ function App() {
                            setContentMinHeight("");
                          }}
                          onEnter={() => {
+                           window.scrollTo(0, 0);
                            setContentMinHeight(contentRef?.current?.getBoundingClientRect().height + "px");
                          }}
                          timeout={{enter: 200, exit: 600}}>
