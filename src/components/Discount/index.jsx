@@ -49,7 +49,7 @@ export default function Discount(props) {
             <form className={cn(s.discount_form)} onSubmit={handleSubmit(onSubmit)}>
               <div className={cn(s.discount_input, errors.hasOwnProperty("userPhone") ? "input-error" : "")}>
                 <input {...register("userPhone", {
-                  required: true,
+                  required: "Phone is required",
                   pattern: {
                     value: PHONE_REGEX,
                     message: PHONE_ERROR_TEXT

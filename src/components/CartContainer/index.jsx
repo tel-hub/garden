@@ -65,7 +65,7 @@ export default function CartContainer() {
 
         <div className={cn(s.cart_form_input, errors.hasOwnProperty("userPhone") ? "input-error" : "")}>
           <input {...register("userPhone", {
-            required: true,
+            required: "Phone is required",
             pattern: {
               value: PHONE_REGEX,
               message: PHONE_ERROR_TEXT

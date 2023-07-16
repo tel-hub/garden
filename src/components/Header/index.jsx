@@ -10,19 +10,22 @@ import logo3x from "../../images/logo@3x.png";
 import {useDispatch, useSelector} from "react-redux";
 import {menuToggle, menuUpdate, setCartFlyOptions} from "../../slices/interfaceSlice";
 import {useLocation} from "react-router-dom";
+import {usePrevious} from "../../features/helpers/hooks";
 
 export default function Header(props) {
+  const prevLocation = props.prevLocation;
+  const dispatch = useDispatch();
+  const location = useLocation();
   const productsList = useSelector((state) => state.cart.products);
   const {burgerOpen, cartFlyOptions} = useSelector((state) => state.interface);
   const pageScrolled = useSelector((state) => state.interface.pageScrolled);
-  const dispatch = useDispatch();
-  const location = useLocation();
+
   const [cartFlyActive, setCartFlyActive] = useState(false);
   const [cartCounter, setCartCounter] = useState(productsList.length);
+  const prevCartCounter = usePrevious(productsList.length);
+
   const htmlRoot = document.documentElement;
   const cartFlyRef = useRef(null);
-
-  const prevLocation = props.prevLocation;
 
   useEffect(() => {
     if (prevLocation && location && prevLocation.pathname !== location.pathname) {
@@ -33,6 +36,12 @@ export default function Header(props) {
   useEffect(() => {
     document.documentElement.classList[burgerOpen ? "add" : "remove"]("__open-mob-menu");
   }, [burgerOpen]);
+
+  useEffect(() => {
+    if (productsList.length < prevCartCounter) {
+      setCartCounter(productsList.length);
+    }
+  }, [prevCartCounter, productsList.length]);
 
   useEffect(() => {
     if (cartFlyRef?.current && cartFlyOptions && (cartFlyOptions.top + cartFlyOptions.left) !== 0) {
