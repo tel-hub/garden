@@ -4,6 +4,8 @@
 
 .footer_wrapper {
   margin-top: 20px;
+  position: relative;
+  z-index: 2;
 
   @include respond-to-min($screen-tablet) {
     margin-top: 30px;

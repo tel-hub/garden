@@ -80,6 +80,7 @@ body {
   margin-top: 30px;
   position: relative;
   background: inherit;
+  overflow: hidden;
 
   @include respond-to-min($screen-desktop) {
     margin-top: 68px;
