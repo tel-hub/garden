@@ -194,7 +194,7 @@
 }
 
 .cart_fly_active {
-  --fly-size: 10px;
+  --fly-size: 16px;
   transition: border-radius var(--cart-fly-time),
   width var(--cart-fly-time),
   height var(--cart-fly-time),
@@ -216,10 +216,6 @@
     background: $color-green;
     border: 2px solid $color-green;
     box-shadow: 0 6px 30px 0 rgba(0, 0, 0, 0.5);
-  }
-
-  @include respond-to-min($screen-desktop) {
-    --fly-size: 16px;
   }
 }
 
