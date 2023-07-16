@@ -8,6 +8,7 @@ import {DialogModal, useModal} from "react-dialog-confirm";
 import {cartClear} from "../../slices/cartSlice";
 import cn from "classnames";
 import {PHONE_ERROR_TEXT, PHONE_REGEX} from "../../features/helpers/constants";
+import {priceFormatter} from "../../features/helpers/functions";
 
 export default function CartContainer() {
   const productsList = useSelector((state) => state.cart.products);
@@ -60,7 +61,7 @@ export default function CartContainer() {
 
         <div className={s.cart_form_total}>
           <span>Total</span>
-          <b>{cartTotal.toFixed(2)}<span className={s.cart_form_currency}>$</span></b>
+          <b>{priceFormatter(cartTotal)}<span className={s.cart_form_currency}>$</span></b>
         </div>
 
         <div className={cn(s.cart_form_input, errors.hasOwnProperty("userPhone") ? "input-error" : "")}>

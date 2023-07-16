@@ -22,9 +22,9 @@
 
 .cart_item {
   display: grid;
-  grid-template-columns: 120px 1fr 40px;
-  grid-template-areas: "image title remove"
-                       "controls price price";
+  grid-template-columns: 120px 1fr 80px 40px;
+  grid-template-areas: "image title title remove"
+                       "controls controls price price";
   gap: 20px;
   position: relative;
 
@@ -32,7 +32,7 @@
     grid-template-columns: 150px 1fr 55px;
     grid-template-areas: "image title remove"
                          "image price remove"
-                         "image controls controls";
+                         "image controls remove";
   }
 
   @include respond-to-min($screen-desktop) {
@@ -45,9 +45,10 @@
   grid-area: price;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 
-  @include respond-to-min($screen-tablet) {
-    justify-content: flex-end;
+  @include respond-to-max($screen-xs) {
+    align-items: flex-end;
   }
 }
 
@@ -73,7 +74,6 @@
     font-size: 28px;
     line-height: 36px;
   }
-
 }
 
 .cart_form_currency {
@@ -109,16 +109,47 @@
   right: 0;
 }
 
+.cart_item_total {
+  font-size: 14px;
+
+  b {
+    font-size: 1.5em;
+  }
+
+  @include respond-to-min($screen-tablet) {
+    margin-left: auto;
+    font-size: 16px;
+  }
+
+  @include respond-to-min($screen-desktop) {
+    font-size: 20px;
+  }
+}
+
 .cart_item_controls {
   grid-area: controls;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  @include respond-to-min($screen-tablet) {
+    justify-content: space-around;
+  }
+
+  @include respond-to-max($screen-xs) {
+    flex-flow: column;
+    align-items: flex-start;
+  }
+}
+
+.cart_item_count {
   position: relative;
-  width: 100%;
-  max-width: 140px;
+  width: 120px;
 
   input {
     @extend %input;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 28px;
     letter-spacing: 0.03em;
     width: 100%;
@@ -128,4 +159,12 @@
     text-align: center;
   }
 
+  @include respond-to-min($screen-tablet) {
+    max-width: 140px;
+    width: 100%;
+
+    input {
+      font-size: 16px;
+    }
+  }
 }

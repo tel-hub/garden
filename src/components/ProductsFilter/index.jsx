@@ -13,14 +13,14 @@ export default function ProductsFilter({showSale = true}) {
       <div className={s.filter_cell}>
         <b>Price</b>
 
-        <input className={s.filter_input} type="number" defaultValue={filterState.priceMin} min={0}
+        <input className={s.filter_input} type="number" placeholder="from" defaultValue={filterState.priceMin} min={0}
                onChange={(e) => {
                  const newVal = parseFloat(e.target.value || "0");
                  dispatch(filterUpdate({...filterState, priceMin: newVal}));
                }}
         />
 
-        <input className={s.filter_input} type="number" defaultValue={filterState.priceMax} min={0}
+        <input className={s.filter_input} type="number" placeholder="to" defaultValue={filterState.priceMax} min={0}
                onChange={(e) => {
                  const newVal = parseFloat(e.target.value || "0") || Infinity;
                  dispatch(filterUpdate({...filterState, priceMax: newVal}));

@@ -5,6 +5,8 @@ export const makeRetinaSrc = (url) => {
   return {src: url, srcSet: `${url}, ${url2x} 2x, ${url3x} 3x`, loading: "lazy"};
 };
 
+export const priceFormatter = (price) => parseFloat(String(price)).toFixed(2);
+
 export const applyProductFilter = (list, filter) => {
   return (list?.length ? list.filter(item => {
     const itemPrice = item.discont_price || item.price;

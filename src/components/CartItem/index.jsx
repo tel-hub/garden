@@ -10,6 +10,7 @@ import PriceBlock from "../PriceBlock";
 import ProductImageLoader from "../ProductImageLoader";
 import {cartAddItem, cartRemoveItem} from "../../slices/cartSlice";
 import {Link} from "react-router-dom";
+import {priceFormatter} from "../../features/helpers/functions";
 
 export default function CartItem(props) {
   const {id, title, price, discont_price, image, count, categoryId} = props;
@@ -65,21 +66,27 @@ export default function CartItem(props) {
       </div>
 
       <div className={s.cart_item_controls}>
+        <div className={s.cart_item_count}>
         <span className={s.cart_item_minus} onClick={() => {
           changeItemCount(count - 1);
         }}>
           <MinusIcon/>
         </span>
 
-        <input value={String(itemCount)} min={0} type="number" onChange={e => {
-          changeItemCount(+e.target.value);
-        }}/>
+          <input value={String(itemCount)} min={0} type="number" onChange={e => {
+            changeItemCount(+e.target.value);
+          }}/>
 
-        <span className={s.cart_item_plus} onClick={() => {
-          changeItemCount(count + 1);
-        }}>
+          <span className={s.cart_item_plus} onClick={() => {
+            changeItemCount(count + 1);
+          }}>
           <PlusIcon/>
         </span>
+
+        </div>
+        <div className={s.cart_item_total}>
+          <b>{priceFormatter(itemCount * (discont_price || price))}</b>$
+        </div>
       </div>
 
       <span className={s.cart_item_remove} onClick={() => {
