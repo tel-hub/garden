@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Route, Routes, useLocation} from "react-router-dom";
 
 import {ROUTES} from "./features/helpers/constants";
@@ -24,7 +24,9 @@ function App() {
   const scrollPosition = useScroll();
   const location = useLocation();
   const prevLocation = usePrevious(location);
+  const contentRef = useRef(null);
   const pageScrolled = useSelector((state) => state.interface.pageScrolled);
+  const [contentMinHeight, setContentMinHeight] = useState("");
 
   useEffect(() => {
     let newScrollTop = scrollPosition > 100;
@@ -38,10 +40,17 @@ function App() {
     <React.Fragment>
       <Header prevLocation={prevLocation}/>
 
-      <main className="content">
+      <main className="content" ref={contentRef} style={{minHeight: contentMinHeight}}>
         <TransitionGroup component={null}>
-          <CSSTransition key={location.key} appear={true} classNames="page-transition" timeout={{enter: 400, exit: 400}}
-          >
+          <CSSTransition key={location.key}
+                         classNames="page-transition"
+                         onExited={() => {
+                           setContentMinHeight("");
+                         }}
+                         onEnter={() => {
+                           setContentMinHeight(contentRef?.current?.getBoundingClientRect().height + "px");
+                         }}
+                         timeout={{enter: 200, exit: 600}}>
             <Routes location={location}>
               <Route path={ROUTES.home.path} element={(<MainPage/>)}/>
               <Route path={ROUTES.sale.path} element={(<SalesPage/>)}/>
