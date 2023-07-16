@@ -118,7 +118,7 @@ export default function Header(props) {
                         radius: 0,
                         bg: "#393"
                       }));
-                    }}>1</span>
+                    }}/>
               {cartCounter ? <span className={s.cart_counter}>{cartCounter}</span> : null}
             </NavLink>
           </div>
