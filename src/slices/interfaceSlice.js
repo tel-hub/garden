@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-  cartFlyOffset: {top: 0, left: 0, width: 0, height: 0, radius: 0, bg: "#393"},
+  cartFlyOptions: {top: 0, left: 0, width: 0, height: 0, radius: 0, bg: "#393"},
   burgerOpen: false,
   pageScrolled: false
 };
@@ -16,8 +16,8 @@ export const interfaceSlice = createSlice({
     menuToggle: (state) => {
       state.burgerOpen = !state.burgerOpen;
     },
-    setCartFlyOffset: (state, action) => {
-      state.cartFlyOffset = action.payload;
+    setCartFlyOptions: (state, action) => {
+      state.cartFlyOptions = action.payload;
     },
     pageScrolledToggle: (state, action) => {
       state.pageScrolled = action.payload;
@@ -26,6 +26,6 @@ export const interfaceSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {menuUpdate, menuToggle, pageScrolledToggle, setCartFlyOffset} = interfaceSlice.actions;
+export const {menuUpdate, menuToggle, pageScrolledToggle, setCartFlyOptions} = interfaceSlice.actions;
 
 export default interfaceSlice.reducer;

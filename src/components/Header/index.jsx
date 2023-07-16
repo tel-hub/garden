@@ -8,12 +8,12 @@ import logo from "../../images/logo.png";
 import logo2x from "../../images/logo@2x.png";
 import logo3x from "../../images/logo@3x.png";
 import {useDispatch, useSelector} from "react-redux";
-import {menuToggle, menuUpdate, setCartFlyOffset} from "../../slices/interfaceSlice";
+import {menuToggle, menuUpdate, setCartFlyOptions} from "../../slices/interfaceSlice";
 import {useLocation} from "react-router-dom";
 
 export default function Header(props) {
   const productsList = useSelector((state) => state.cart.products);
-  const {burgerOpen, cartFlyOffset} = useSelector((state) => state.interface);
+  const {burgerOpen, cartFlyOptions} = useSelector((state) => state.interface);
   const pageScrolled = useSelector((state) => state.interface.pageScrolled);
   const dispatch = useDispatch();
   const location = useLocation();
@@ -35,15 +35,15 @@ export default function Header(props) {
   }, [burgerOpen]);
 
   useEffect(() => {
-    if (cartFlyRef?.current && cartFlyOffset && (cartFlyOffset.top + cartFlyOffset.left) !== 0) {
+    if (cartFlyRef?.current && cartFlyOptions && (cartFlyOptions.top + cartFlyOptions.left) !== 0) {
       const parentRect = cartFlyRef?.current.parentElement.getBoundingClientRect();
 
-      htmlRoot.style.setProperty("--cart-fly-width", `${cartFlyOffset.width}px`);
-      htmlRoot.style.setProperty("--cart-fly-height", `${cartFlyOffset.height}px`);
-      htmlRoot.style.setProperty("--cart-fly-radius", `${cartFlyOffset.radius}px`);
-      htmlRoot.style.setProperty("--cart-fly-bg", cartFlyOffset.bg);
-      htmlRoot.style.setProperty("--cart-fly-x", `${cartFlyOffset.left - parentRect.x + cartFlyOffset.width - parentRect.width}px`);
-      htmlRoot.style.setProperty("--cart-fly-y", `${cartFlyOffset.top - parentRect.y + parentRect.height}px`);
+      htmlRoot.style.setProperty("--cart-fly-width", `${cartFlyOptions.width}px`);
+      htmlRoot.style.setProperty("--cart-fly-height", `${cartFlyOptions.height}px`);
+      htmlRoot.style.setProperty("--cart-fly-radius", `${cartFlyOptions.radius}px`);
+      htmlRoot.style.setProperty("--cart-fly-bg", cartFlyOptions.bg);
+      htmlRoot.style.setProperty("--cart-fly-x", `${cartFlyOptions.left - parentRect.x + cartFlyOptions.width - parentRect.width}px`);
+      htmlRoot.style.setProperty("--cart-fly-y", `${cartFlyOptions.top - parentRect.y + parentRect.height}px`);
       setCartFlyActive(true);
     } else {
       htmlRoot.style.setProperty("--cart-fly-width", "0px");
@@ -54,7 +54,7 @@ export default function Header(props) {
       htmlRoot.style.setProperty("--cart-fly-y", "0px");
       setCartFlyActive(false);
     }
-  }, [cartFlyOffset, cartFlyActive, cartFlyRef]);
+  }, [cartFlyOptions, cartFlyActive, cartFlyRef]);
 
   const navList = useMemo(() => {
     return [
@@ -110,8 +110,15 @@ export default function Header(props) {
               <span ref={cartFlyRef} className={cn(s.cart_fly, cartFlyActive ? s.cart_fly_active : "")}
                     onTransitionEnd={(e) => {
                       setCartCounter(productsList.length);
-                      dispatch(setCartFlyOffset({top: 0, left: 0, width: 0, height: 0, radius: 0, bg: "#393"}));
-                    }}></span>
+                      dispatch(setCartFlyOptions({
+                        top: 0,
+                        left: 0,
+                        width: 0,
+                        height: 0,
+                        radius: 0,
+                        bg: "#393"
+                      }));
+                    }}>1</span>
               {cartCounter ? <span className={s.cart_counter}>{cartCounter}</span> : null}
             </NavLink>
           </div>

@@ -1,15 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import PriceBlock from "../PriceBlock";
-import s from "./index.module.scss";
-import {useDispatch} from "react-redux";
-import {cartAddItem} from "../../slices/cartSlice";
 import ProductImageLoader from "../ProductImageLoader";
-import {setCartFlyOffset} from "../../slices/interfaceSlice";
+import CartButton from "../CartButton";
+import s from "./index.module.scss";
 
 export default function ProductItem(props) {
   const {id, image, title, price, discont_price, categoryId} = props;
-  const dispatch = useDispatch();
 
   return (
     <div className="grid-item">
@@ -20,13 +17,7 @@ export default function ProductItem(props) {
           wrapperClassName={"item-image __product"}
         />
         <div className="item-image__price">
-          <span className={s.cart_btn} onClick={(e) => {
-            const radius = parseFloat(document.defaultView.getComputedStyle(e.target)?.borderRadius ?? "0");
-            const bg = document.defaultView.getComputedStyle(e.target)?.backgroundColor ?? "none";
-            const {left, top, width, height} = e.target.getBoundingClientRect();
-            dispatch(setCartFlyOffset({left, top, width, height, radius, bg}));
-            dispatch(cartAddItem({...props, count: -1}));
-          }}>Add to cart</span>
+          <CartButton productInfo={props} className={s.cart_btn}>Add to cart</CartButton>
         </div>
       </div>
 
