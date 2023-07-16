@@ -55,7 +55,7 @@ export default function CartItem(props) {
       </div>
 
       <div className={s.cart_item_title}>
-        <Link to={`/category/${categoryId}/product/${id}`}>
+        <Link to={`/product/${id}`}>
           {title}
         </Link>
       </div>

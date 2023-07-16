@@ -24,7 +24,8 @@ export default function ProductsContainer({
   const {filter: filterState} = useSelector((state) => state.filter);
 
   useEffect(() => {
-    setProductList(applyProductFilter(productsData, onlySales ? {...filterState, onlySales: true} : filterState));
+    setProductList(hideFilter ? productsData :
+      applyProductFilter(productsData, onlySales ? {...filterState, onlySales: true} : filterState));
   }, [productsData, filterState, onlySales]);
 
   return (

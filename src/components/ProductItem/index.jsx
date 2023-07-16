@@ -24,7 +24,7 @@ export default function ProductItem(props) {
       <PriceBlock price={price} discount_price={discont_price}></PriceBlock>
 
       <div className="product-title__holder">
-        <Link to={`/category/${categoryId}/product/${id}`} className="product-title">
+        <Link to={`/product/${id}`} className="product-title">
           {title}
         </Link>
       </div>

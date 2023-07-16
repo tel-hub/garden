@@ -31,7 +31,7 @@ export const ROUTES = {
     path: "/products"
   },
   productsId: {
-    path: "/category/:category_id/product/:product_id"
+    path: "/product/:product_id"
   },
   cart: {
     path: "/cart"
